@@ -1,0 +1,178 @@
+{
+  "id": "open_ports_exposed_services",
+  "system": "network",
+  "title": "Open Ports and Exposed Services",
+  "description": "Learn how unnecessary open ports and publicly exposed services allow attackers to discover and access systems that should not be reachable from the internet.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "internet_exposure",
+      "title": "Internet Exposure",
+      "description": "Some network services are accessible from the internet through open ports."
+    },
+    {
+      "id": "port_scanning",
+      "title": "Port Scanning",
+      "description": "The attacker scans the organization's public IP addresses to discover exposed services."
+    },
+    {
+      "id": "service_identification",
+      "title": "Service Identification",
+      "description": "The attacker identifies which applications are running behind the open ports."
+    },
+    {
+      "id": "service_exploitation",
+      "title": "Service Exploitation",
+      "description": "The attacker targets exposed services that are weak or improperly secured."
+    },
+    {
+      "id": "network_compromise",
+      "title": "Network Compromise",
+      "description": "The exposed service becomes the attacker's entry point into the organization's network."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "internet_exposure",
+      "title": "Close Unnecessary Ports",
+      "description": "Disable services that are not required and close unused network ports."
+    },
+    {
+      "stage": "service_identification",
+      "title": "Restrict Access",
+      "description": "Use firewalls and network segmentation to limit who can reach sensitive services."
+    },
+    {
+      "stage": "service_exploitation",
+      "title": "Secure Remote Services",
+      "description": "Protect remote administration services with VPNs and multi-factor authentication."
+    },
+    {
+      "stage": "network_compromise",
+      "title": "Continuous Monitoring",
+      "description": "Regularly scan for exposed services and monitor for unauthorized internet exposure."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "internet_exposure",
+      "title": "Scenario",
+      "text": "A company hosts several network services so employees can work remotely and administrators can manage systems from different locations.",
+      "image": "network/network_server.png",
+      "next": "what_is_port"
+    },
+
+    {
+      "id": "what_is_port",
+      "type": "information",
+      "stage": "internet_exposure",
+      "title": "What is a Network Port?",
+      "text": "A network port is a communication endpoint that allows devices to provide services such as websites, databases, or remote access. Only the ports that are truly needed should be accessible.",
+      "image": "network/open_ports.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "port_scanning",
+      "title": "Open Ports and Exposed Services",
+      "text": "Some services are publicly accessible even though they should only be available internally. Common examples include Remote Desktop (RDP), database services such as MySQL or MongoDB, and administrative dashboards.",
+      "image": "network/exposed_services.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "service_identification",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to discover exposed services that can provide an easy entry point into the organization's network.",
+      "image": "network/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "service_identification",
+      "title": "How do attackers usually discover exposed services?",
+      "choices": [
+        {
+          "text": "By scanning public IP addresses for open ports.",
+          "next": "attack_success"
+        },
+        {
+          "text": "By changing firewall rules from outside the organization.",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "By deleting network cables.",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "service_identification",
+      "title": "Try Again",
+      "text": "Attackers commonly perform port scans to identify services that are exposed to the internet before attempting further attacks.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "attack_success",
+      "type": "information",
+      "stage": "service_exploitation",
+      "title": "Exposed Service Found",
+      "text": "After scanning the network, the attacker discovers exposed services such as Remote Desktop (RDP), database servers, or administrative dashboards. If these services are weakly protected, they become potential entry points into the network.",
+      "image": "network/port_scan.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "network_compromise",
+      "title": "Impact",
+      "text": "Successful exploitation of exposed services can allow attackers to access sensitive systems, steal business data, install malware, or move deeper into the organization's network.",
+      "image": "network/network_breach.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "network_compromise",
+      "title": "How to Prevent This",
+      "text": "Organizations should close unnecessary ports, disable unused services, restrict access using firewalls and network segmentation, secure remote access with VPNs and multi-factor authentication, regularly scan for exposed services, limit administrative interfaces to internal networks, and continuously monitor for unauthorized internet exposure.",
+      "image": "network/security_monitoring.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how an attacker scanned the internet, identified exposed services, and used them as a gateway into the organization's network.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Open ports and exposed services provide attackers with opportunities to access internal systems. Limiting exposed services and continuously monitoring network exposure are essential parts of a strong security strategy.",
+      "image": "icons/check.png"
+    }
+  ]
+}
