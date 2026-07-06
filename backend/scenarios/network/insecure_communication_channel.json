@@ -1,0 +1,178 @@
+{
+  "id": "insecure_communication_channels",
+  "system": "network",
+  "title": "Insecure Communication Channels (Man-in-the-Middle Exposure)",
+  "description": "Learn how insecure communication channels allow attackers to intercept, alter, or steal data exchanged between two parties.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "data_transmission",
+      "title": "Data Transmission",
+      "description": "Two systems communicate over a network to exchange sensitive information."
+    },
+    {
+      "id": "unsecured_channel",
+      "title": "Unsecured Communication Channel",
+      "description": "The communication is not fully encrypted or protected against interception."
+    },
+    {
+      "id": "interception",
+      "title": "Traffic Interception",
+      "description": "An attacker secretly intercepts data between the two communicating parties."
+    },
+    {
+      "id": "man_in_the_middle",
+      "title": "Man-in-the-Middle Attack",
+      "description": "The attacker positions themselves between both parties to observe or modify data in transit."
+    },
+    {
+      "id": "data_tampering",
+      "title": "Data Manipulation",
+      "description": "The attacker alters, injects, or steals sensitive information during transmission."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "unsecured_channel",
+      "title": "Use Encryption (TLS/HTTPS)",
+      "description": "Encrypt all communications using HTTPS/TLS to prevent data interception."
+    },
+    {
+      "stage": "interception",
+      "title": "Use Secure Networks",
+      "description": "Avoid unsecured public Wi-Fi or require VPN connections for remote access."
+    },
+    {
+      "stage": "man_in_the_middle",
+      "title": "Prevent DNS Spoofing",
+      "description": "Use DNSSEC and trusted resolvers to ensure correct domain resolution."
+    },
+    {
+      "stage": "data_tampering",
+      "title": "Secure Communication Channels",
+      "description": "Use VPNs and end-to-end encryption to protect data integrity and confidentiality."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "data_transmission",
+      "title": "Scenario",
+      "text": "Two systems communicate over a network to exchange sensitive data such as login credentials, financial information, or personal records.",
+      "image": "network/network_communication.png",
+      "next": "what_is_mitm"
+    },
+
+    {
+      "id": "what_is_mitm",
+      "type": "information",
+      "stage": "data_transmission",
+      "title": "What is a Man-in-the-Middle Attack?",
+      "text": "A Man-in-the-Middle (MitM) attack happens when an attacker secretly intercepts communication between two parties without their knowledge.",
+      "image": "network/mitm_concept.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "unsecured_channel",
+      "title": "Insecure Communication Channels",
+      "text": "When communication is not properly encrypted or secured, attackers can intercept and manipulate data in transit. This can happen on public Wi-Fi, misconfigured networks, or systems without proper encryption.",
+      "image": "network/unsecured_channel.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "interception",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to secretly intercept communication between two parties to steal sensitive information or manipulate data without being detected.",
+      "image": "network/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "interception",
+      "title": "How can attackers perform a Man-in-the-Middle attack?",
+      "choices": [
+        {
+          "text": "By intercepting unencrypted data on insecure networks like public Wi-Fi.",
+          "next": "attack_success"
+        },
+        {
+          "text": "By physically breaking into the server room.",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "By deleting firewall rules from inside the system.",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "interception",
+      "title": "Try Again",
+      "text": "MitM attacks typically rely on intercepting or redirecting network traffic rather than physical access or direct system modification.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "attack_success",
+      "type": "information",
+      "stage": "man_in_the_middle",
+      "title": "Man-in-the-Middle Attack in Progress",
+      "text": "The attacker successfully positions themselves between two communicating systems and begins intercepting data such as login credentials, session tokens, or financial transactions.",
+      "image": "network/mitm_attack.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "data_tampering",
+      "title": "Impact",
+      "text": "MitM attacks can lead to stolen credentials, unauthorized account access, malware injection, and manipulation of sensitive communications such as financial transactions.",
+      "image": "network/data_breach.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "data_tampering",
+      "title": "How to Prevent This",
+      "text": "Organizations should enforce HTTPS/TLS encryption for all communications, use VPNs for remote access, avoid unsecured public Wi-Fi for sensitive operations, and implement DNS security protections such as DNSSEC to prevent spoofing attacks.",
+      "image": "network/security_monitoring.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how an attacker intercepted network traffic and positioned themselves between two communicating parties to steal or manipulate data.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Insecure communication channels allow attackers to intercept and manipulate data in transit. Encryption and secure communication protocols are essential to prevent Man-in-the-Middle attacks.",
+      "image": "icons/check.png"
+    }
+  ]
+}
