@@ -1,0 +1,178 @@
+{
+  "id": "network_misconfigurations",
+  "system": "network",
+  "title": "Network Misconfigurations",
+  "description": "Learn how poor security configurations create weaknesses that attackers can exploit to gain unauthorized access to network resources.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "network_configuration",
+      "title": "Network Configuration",
+      "description": "The organization's network devices and services are configured to control access and protect resources."
+    },
+    {
+      "id": "misconfiguration",
+      "title": "Security Misconfiguration",
+      "description": "Some security settings are incorrectly configured, creating unnecessary exposure."
+    },
+    {
+      "id": "weakness_discovery",
+      "title": "Weakness Discovery",
+      "description": "The attacker identifies insecure configurations that can be abused."
+    },
+    {
+      "id": "unauthorized_access",
+      "title": "Unauthorized Access",
+      "description": "The attacker exploits the misconfiguration to gain access to systems or sensitive resources."
+    },
+    {
+      "id": "network_compromise",
+      "title": "Network Compromise",
+      "description": "Sensitive systems, devices, or data become exposed to unauthorized users."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "misconfiguration",
+      "title": "Least Privilege",
+      "description": "Grant users and systems only the minimum permissions required."
+    },
+    {
+      "stage": "misconfiguration",
+      "title": "Replace Default Credentials",
+      "description": "Change all default usernames and passwords immediately after deployment."
+    },
+    {
+      "stage": "weakness_discovery",
+      "title": "Regular Configuration Reviews",
+      "description": "Continuously review and update security settings to meet organizational standards."
+    },
+    {
+      "stage": "network_compromise",
+      "title": "Configuration Audits",
+      "description": "Perform periodic audits to identify and correct security misconfigurations."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "network_configuration",
+      "title": "Scenario",
+      "text": "A company's network contains routers, switches, cloud resources, and servers that have been configured by different administrators over time.",
+      "image": "network/network_diagram.png",
+      "next": "what_is_configuration"
+    },
+
+    {
+      "id": "what_is_configuration",
+      "type": "information",
+      "stage": "network_configuration",
+      "title": "What Are Security Configurations?",
+      "text": "Security configurations determine who can access network resources, how devices authenticate users, and which services are exposed. Proper configuration is essential for protecting an organization's network.",
+      "image": "network/network_settings.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "misconfiguration",
+      "title": "Security Misconfigurations",
+      "text": "Poorly configured security settings create some of the most exploitable network vulnerabilities. Common examples include overly permissive access controls, unchanged default credentials, and unrestricted cloud storage permissions.",
+      "image": "network/security_warning.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "weakness_discovery",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to discover configuration mistakes that provide unauthorized access to network resources without exploiting software vulnerabilities.",
+      "image": "network/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "weakness_discovery",
+      "title": "Which of the following is an example of a security misconfiguration?",
+      "choices": [
+        {
+          "text": "Leaving default passwords unchanged and granting excessive access permissions.",
+          "next": "attack_success"
+        },
+        {
+          "text": "Enforcing multi-factor authentication for administrators.",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "Performing regular security audits.",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "weakness_discovery",
+      "title": "Try Again",
+      "text": "Misconfigurations are security settings that unintentionally expose systems. Strong authentication and regular audits help prevent these weaknesses.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "attack_success",
+      "type": "information",
+      "stage": "unauthorized_access",
+      "title": "Unauthorized Access",
+      "text": "The attacker exploits one or more configuration weaknesses. For example, they may log in using unchanged default credentials, access resources because permissions are too broad, or discover sensitive information stored in publicly accessible cloud storage.",
+      "image": "network/network_access.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "network_compromise",
+      "title": "Impact",
+      "text": "Network misconfigurations can expose confidential data, allow unauthorized access to critical systems, and increase the likelihood of larger security breaches throughout the organization.",
+      "image": "network/network_breach.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "network_compromise",
+      "title": "How to Prevent This",
+      "text": "Organizations should apply the principle of least privilege, replace all default credentials, enforce strong authentication, regularly review security configurations, restrict access to cloud resources, and perform periodic configuration audits to identify and correct security weaknesses.",
+      "image": "network/security_monitoring.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how several small configuration mistakes combined to give an attacker unauthorized access to sensitive network resources.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Security misconfigurations are among the most common causes of network breaches. Regular reviews, strong authentication, and proper access controls greatly reduce the risk of exploitation.",
+      "image": "icons/check.png"
+    }
+  ]
+}
