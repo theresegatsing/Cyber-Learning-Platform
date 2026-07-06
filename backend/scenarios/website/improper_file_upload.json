@@ -1,0 +1,178 @@
+{
+  "id": "improper_file_upload_validation",
+  "system": "website",
+  "title": "Improper File Upload Validation",
+  "description": "Learn how weak file upload validation allows attackers to upload malicious files that can compromise a web application.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "file_upload",
+      "title": "File Upload",
+      "description": "The website allows users to upload files such as images, documents, or profile pictures."
+    },
+    {
+      "id": "weak_validation",
+      "title": "Weak File Validation",
+      "description": "The website does not properly verify uploaded file types, content, or size."
+    },
+    {
+      "id": "malicious_upload",
+      "title": "Malicious File Upload",
+      "description": "An attacker uploads a harmful file disguised as a legitimate document or image."
+    },
+    {
+      "id": "file_execution",
+      "title": "Malicious File Processing",
+      "description": "The uploaded file is stored or processed by the server, allowing the attacker to abuse the application."
+    },
+    {
+      "id": "system_compromise",
+      "title": "System Compromise",
+      "description": "The attacker gains unauthorized access, executes malicious actions, or compromises sensitive data."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "weak_validation",
+      "title": "Allow Approved File Types",
+      "description": "Accept only specific file types that are required by the application."
+    },
+    {
+      "stage": "malicious_upload",
+      "title": "Verify File Content",
+      "description": "Inspect the actual file contents instead of trusting file extensions."
+    },
+    {
+      "stage": "file_execution",
+      "title": "Malware Scanning",
+      "description": "Scan uploaded files before storing or processing them."
+    },
+    {
+      "stage": "system_compromise",
+      "title": "Secure File Storage",
+      "description": "Store uploaded files outside publicly accessible directories."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "file_upload",
+      "title": "Scenario",
+      "text": "A company website allows users to upload files such as resumes, profile pictures, and documents.",
+      "image": "website/file_upload.png",
+      "next": "what_is_upload"
+    },
+
+    {
+      "id": "what_is_upload",
+      "type": "information",
+      "stage": "file_upload",
+      "title": "How File Uploads Work",
+      "text": "When a user uploads a file, the website receives it, validates it, stores it, and may later display or process it.",
+      "image": "website/upload_process.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "weak_validation",
+      "title": "Improper File Upload Validation",
+      "text": "The website only checks the file extension and does not verify the actual file type or content. As a result, malicious files can bypass validation and be uploaded successfully.",
+      "image": "website/file_warning.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "malicious_upload",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to upload a malicious file that the website accepts as a legitimate upload.",
+      "image": "website/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "malicious_upload",
+      "title": "What allows the attacker to upload a malicious file?",
+      "choices": [
+        {
+          "text": "The website only checks the file extension instead of the actual file content.",
+          "next": "attack_success"
+        },
+        {
+          "text": "The website encrypts uploaded files.",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "The website automatically deletes every uploaded file.",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "malicious_upload",
+      "title": "Try Again",
+      "text": "Weak upload validation occurs when websites trust file names or extensions instead of verifying what the file actually contains.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "attack_success",
+      "type": "information",
+      "stage": "file_execution",
+      "title": "Malicious File Accepted",
+      "text": "The website stores and processes the uploaded file because it passed the weak validation checks. The attacker can now exploit how the application handles that file.",
+      "image": "website/malicious_upload.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "system_compromise",
+      "title": "Impact",
+      "text": "Improper file upload validation can allow attackers to execute malicious code, spread malware, overwrite files, or gain unauthorized access to the application.",
+      "image": "website/system_compromise.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "system_compromise",
+      "title": "How to Prevent This",
+      "text": "Organizations should allow only approved file types, verify the actual file contents, scan uploaded files for malware, enforce file size limits, and store uploaded files outside publicly accessible directories.",
+      "image": "website/security_fix.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how weak upload validation allowed a malicious file to bypass security checks and compromise the web application.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Improper file upload validation can expose a web application to malware and other attacks. Validating file content, scanning uploads, and securely storing files are essential security practices.",
+      "image": "icons/check.png"
+    }
+  ]
+}
