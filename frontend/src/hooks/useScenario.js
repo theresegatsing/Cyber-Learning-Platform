@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
-import { createScenarioEngine } from "../engine/scenarioEngine";
+import {useState,useRef} from "react";
+import {createScenarioEngine} from "../engine/scenarioEngine";
 
 
-export function useScenario(scenarioData) {
+export function useScenario(scenarioData){
 
 
     const engine = useRef(
@@ -10,25 +10,53 @@ export function useScenario(scenarioData) {
     );
 
 
-    const [currentNode, setCurrentNode] = useState(
-        engine.current.getCurrentNode()
-    );
+    const [currentNode,setCurrentNode] =
+        useState(
+            engine.current.getCurrentNode()
+        );
 
 
-    function next(nextNodeId) {
+    const [history,setHistory] =
+        useState([]);
 
-        engine.current.goNext(nextNodeId);
+
+
+    function next(nextId){
+
+
+        engine.current.goNext(nextId);
+
 
         setCurrentNode(
             engine.current.getCurrentNode()
         );
 
+
+        setHistory(
+            [...engine.current.getHistory()]
+        );
+
+
     }
 
 
+
     return {
+
         currentNode,
-        next
+        next,
+
+        stages:
+        engine.current.getStages(),
+
+        currentStage:
+        engine.current.getCurrentStage(),
+
+        history,
+
+        prevention:
+        engine.current.getPreventionPoints()
+
     };
 
 }
