@@ -1,0 +1,178 @@
+{
+  "id": "weak_session_management",
+  "system": "website",
+  "title": "Weak Session Management",
+  "description": "Learn how weak session handling in web applications can allow attackers to hijack active user sessions and impersonate legitimate users.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "session_creation",
+      "title": "Session Creation",
+      "description": "The website creates a session to keep a user logged in after authentication."
+    },
+    {
+      "id": "weak_session_protection",
+      "title": "Weak Session Protection",
+      "description": "Session identifiers are not securely generated or protected."
+    },
+    {
+      "id": "session_interception",
+      "title": "Session Interception",
+      "description": "An attacker obtains or predicts a valid session token."
+    },
+    {
+      "id": "session_hijacking",
+      "title": "Session Hijacking",
+      "description": "The attacker uses the stolen session to impersonate a legitimate user."
+    },
+    {
+      "id": "unauthorized_actions",
+      "title": "Unauthorized Actions",
+      "description": "The attacker performs actions as the victim user."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "session_creation",
+      "title": "Secure Session IDs",
+      "description": "Generate long, random, and unpredictable session identifiers."
+    },
+    {
+      "stage": "weak_session_protection",
+      "title": "Secure Cookie Settings",
+      "description": "Use HttpOnly, Secure, and SameSite cookie flags to protect session data."
+    },
+    {
+      "stage": "session_interception",
+      "title": "Session Expiration",
+      "description": "Expire sessions after inactivity or a defined time limit."
+    },
+    {
+      "stage": "session_hijacking",
+      "title": "Session Invalidation",
+      "description": "Immediately invalidate sessions upon logout or suspicious activity."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "session_creation",
+      "title": "Scenario",
+      "text": "A web application keeps users logged in using session-based authentication after they enter their credentials.",
+      "image": "website/login_page.png",
+      "next": "what_is_session"
+    },
+
+    {
+      "id": "what_is_session",
+      "type": "information",
+      "stage": "session_creation",
+      "title": "What is a Session?",
+      "text": "A session is a mechanism used by web applications to remember a user after they log in, allowing them to stay authenticated across multiple requests.",
+      "image": "website/session_flow.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "weak_session_protection",
+      "title": "Weak Session Management",
+      "text": "Weak session management occurs when session identifiers are predictable, poorly protected, or not properly invalidated, making it easier for attackers to take over active sessions.",
+      "image": "website/session_warning.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "session_interception",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to gain control of an active user session in order to impersonate a legitimate user without knowing their password.",
+      "image": "website/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "session_interception",
+      "title": "What is a likely consequence of weak session management?",
+      "choices": [
+        {
+          "text": "An attacker may hijack an active user session",
+          "next": "hijack_success"
+        },
+        {
+          "text": "The database automatically encrypts itself",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "The firewall blocks all session activity",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "session_interception",
+      "title": "Try Again",
+      "text": "Weak session management affects how user sessions are created and protected, allowing attackers to reuse or steal valid session tokens.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "hijack_success",
+      "type": "information",
+      "stage": "session_hijacking",
+      "title": "Session Hijacking",
+      "text": "The attacker successfully obtains or predicts a valid session token and uses it to impersonate the victim user.",
+      "image": "website/session_takeover.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "unauthorized_actions",
+      "title": "Impact",
+      "text": "Session hijacking can lead to unauthorized actions such as account changes, data theft, and unauthorized transactions performed under the victim's identity.",
+      "image": "website/data_leak.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "unauthorized_actions",
+      "title": "How to Prevent This",
+      "text": "Organizations should generate secure session identifiers, use secure cookie settings (HttpOnly, Secure, SameSite), expire sessions after inactivity, and invalidate sessions immediately after logout.",
+      "image": "website/security_fix.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how a weak session mechanism allowed an attacker to take over an active user session and impersonate a legitimate user.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Weak session management allows attackers to hijack active sessions and impersonate users. Strong session handling practices are essential to protect authenticated users.",
+      "image": "icons/check.png"
+    }
+  ]
+}
