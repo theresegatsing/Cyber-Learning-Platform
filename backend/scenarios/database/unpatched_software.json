@@ -1,0 +1,188 @@
+{
+  "id": "unpatched_software",
+  "system": "database",
+  "title": "Unpatched Software and Outdated Systems",
+  "description": "Learn how unpatched software and outdated systems expose organizations to known vulnerabilities that attackers can exploit to gain access to sensitive data.",
+  "start": "intro",
+
+  "attack_stages": [
+    {
+      "id": "outdated_system",
+      "title": "Outdated System",
+      "description": "The organization is running software that has not been updated with security patches."
+    },
+    {
+      "id": "vulnerability_discovery",
+      "title": "Vulnerability Discovery",
+      "description": "Attackers identify known security flaws in outdated software."
+    },
+    {
+      "id": "exploit_execution",
+      "title": "Exploit Execution",
+      "description": "Attackers exploit known vulnerabilities to run malicious code."
+    },
+    {
+      "id": "backdoor_creation",
+      "title": "Backdoor Access",
+      "description": "Attackers create hidden access points for persistent entry."
+    },
+    {
+      "id": "data_compromise",
+      "title": "Data Compromise",
+      "description": "Sensitive data is accessed, stolen, or modified."
+    }
+  ],
+
+  "prevention_points": [
+    {
+      "stage": "outdated_system",
+      "title": "Regular Software Updates",
+      "description": "Apply security patches as soon as they are released by vendors."
+    },
+    {
+      "stage": "vulnerability_discovery",
+      "title": "Asset Monitoring",
+      "description": "Maintain an inventory of all systems and track software versions."
+    },
+    {
+      "stage": "exploit_execution",
+      "title": "Security Hardening",
+      "description": "Disable unnecessary services and reduce attack surface."
+    },
+    {
+      "stage": "backdoor_creation",
+      "title": "Intrusion Detection",
+      "description": "Monitor systems for unauthorized persistence mechanisms."
+    }
+  ],
+
+  "nodes": [
+    {
+      "id": "intro",
+      "type": "story",
+      "stage": "outdated_system",
+      "title": "Scenario",
+      "text": "A company operates a database system that relies on several software components, some of which have not been updated in a long time.",
+      "image": "database/database_server.png",
+      "next": "what_is_unpatched"
+    },
+
+    {
+      "id": "what_is_unpatched",
+      "type": "information",
+      "stage": "outdated_system",
+      "title": "What is Unpatched Software?",
+      "text": "Unpatched software refers to systems or applications that have known security vulnerabilities that have not been fixed through updates or patches. These vulnerabilities are publicly known and often documented.",
+      "image": "database/software_bug.png",
+      "next": "weakness"
+    },
+
+    {
+      "id": "weakness",
+      "type": "information",
+      "stage": "vulnerability_discovery",
+      "title": "Security Weakness",
+      "text": "Outdated systems and end-of-life software no longer receive security updates, making them especially vulnerable. Attackers actively search for these systems because their weaknesses are already known.",
+      "image": "database/outdated_system.png",
+      "next": "goal"
+    },
+
+    {
+      "id": "goal",
+      "type": "information",
+      "stage": "vulnerability_discovery",
+      "title": "Attacker Goal",
+      "text": "The attacker wants to exploit known vulnerabilities in outdated software to gain unauthorized access to the database system.",
+      "image": "database/attacker.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "choice1",
+      "type": "choice",
+      "stage": "vulnerability_discovery",
+      "title": "Why are unpatched systems dangerous?",
+      "choices": [
+        {
+          "text": "Known vulnerabilities can be exploited by attackers",
+          "next": "exploit_success"
+        },
+        {
+          "text": "They automatically become more secure over time",
+          "next": "wrong_answer"
+        },
+        {
+          "text": "Firewalls fully eliminate software vulnerabilities",
+          "next": "wrong_answer"
+        }
+      ]
+    },
+
+    {
+      "id": "wrong_answer",
+      "type": "feedback",
+      "stage": "vulnerability_discovery",
+      "title": "Try Again",
+      "text": "Unpatched systems remain vulnerable because known flaws are not fixed. Attackers actively search for these weaknesses.",
+      "image": "icons/warning.png",
+      "next": "choice1"
+    },
+
+    {
+      "id": "exploit_success",
+      "type": "information",
+      "stage": "exploit_execution",
+      "title": "Exploit Execution",
+      "text": "The attacker successfully exploits a known vulnerability in the outdated software, allowing them to execute malicious code on the system.",
+      "image": "database/exploit.png",
+      "next": "backdoor"
+    },
+
+    {
+      "id": "backdoor",
+      "type": "information",
+      "stage": "backdoor_creation",
+      "title": "Backdoor Access",
+      "text": "The attacker creates a hidden access method (backdoor) to maintain persistent access even after system restarts or partial fixes.",
+      "image": "database/backdoor.png",
+      "next": "impact"
+    },
+
+    {
+      "id": "impact",
+      "type": "information",
+      "stage": "data_compromise",
+      "title": "Data Compromise",
+      "text": "Sensitive data stored in the database can now be accessed, modified, or stolen due to the exploited vulnerability.",
+      "image": "database/data_leak.png",
+      "next": "remediation"
+    },
+
+    {
+      "id": "remediation",
+      "type": "information",
+      "stage": "data_compromise",
+      "title": "How to Prevent This",
+      "text": "Organizations should regularly update and patch software, monitor system versions, replace end-of-life systems, and maintain a strict upgrade policy aligned with security and compliance requirements.",
+      "image": "database/security_update.png",
+      "next": "attack_replay"
+    },
+
+    {
+      "id": "attack_replay",
+      "type": "attack_replay",
+      "title": "Attack Replay",
+      "text": "Review how an outdated system allowed a known vulnerability to be exploited, leading to full compromise of the database environment.",
+      "image": "icons/replay.png",
+      "next": "summary"
+    },
+
+    {
+      "id": "summary",
+      "type": "summary",
+      "title": "Scenario Complete",
+      "text": "Unpatched software is one of the most common causes of security breaches. Regular updates and system modernization are critical to prevent attackers from exploiting known vulnerabilities.",
+      "image": "icons/check.png"
+    }
+  ]
+}
