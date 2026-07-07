@@ -61,8 +61,8 @@ export default function ScenarioPlayer() {
         async function loadScenario() {
 
             const data = await fetchScenario(
-                "database",
-                "misconfigured_firewalls"
+                    system,
+                    scenarioId
             );
 
             // Store the loaded scenario.
