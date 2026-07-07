@@ -5,14 +5,15 @@
  * This page is responsible for running a cybersecurity scenario.
  *
  * Responsibilities:
- * - Requests a scenario from the backend.
- * - Waits until the scenario is loaded.
- * - Initializes the scenario engine through the custom hook.
+ * - Receives the selected system and scenario from the previous page.
+ * - Requests the scenario JSON from the backend.
+ * - Initializes the scenario engine through useScenario().
  * - Displays the current scenario card.
  *
- * This is the main screen where learners interact with the simulation.
+ * This is the main simulation screen where learners interact with scenarios.
  * ============================================================================
  */
+
 
 import { useEffect, useState } from "react";
 
@@ -24,59 +25,58 @@ import { useScenario } from "../hooks/useScenario";
 
 
 /**
- * Main page responsible for loading a scenario.
+ * Loads and runs a selected cybersecurity scenario.
  *
- * The scenario is retrieved from the backend when the page
- * is first opened.
+ * @param {Object} props
+ * @param {string} props.system - Category of scenario
+ *                                (database, website, network)
  *
- * While the scenario is loading, a loading message is shown.
- * Once loaded, the ScenarioContent component takes over.
+ * @param {string} props.scenarioId - Specific scenario identifier
+ *                                    (misconfigured_firewalls, weak_passwords)
  */
-export default function ScenarioPlayer() {
+export default function ScenarioPlayer({
+    system,
+    scenarioId
+}) {
+
 
     /**
-     * Stores the complete scenario loaded from the backend.
-     *
-     * Initially null because no data has been received yet.
+     * Stores the scenario JSON received from the backend.
      */
     const [scenario, setScenario] = useState(null);
 
+
+
     /**
-     * Runs once when the component is mounted.
-     *
-     * It requests the selected scenario from the backend API.
+     * Fetch the selected scenario when the page loads.
      */
     useEffect(() => {
 
-        /**
-         * Fetches the scenario JSON from the backend.
-         *
-         * Current example:
-         * System: Database
-         * Scenario: Misconfigured Firewalls
-         *
-         * Later these values will come from the user's selection
-         * on the Home page.
-         */
+
         async function loadScenario() {
 
+
             const data = await fetchScenario(
-                    system,
-                    scenarioId
+                system,
+                scenarioId
             );
 
-            // Store the loaded scenario.
+
             setScenario(data);
 
         }
 
+
         loadScenario();
 
-    }, []);
+
+    }, [system, scenarioId]);
+
+
 
     /**
-     * Display a loading message while waiting for
-     * the backend to return the scenario.
+     * Display loading state while waiting
+     * for backend response.
      */
     if (!scenario) {
 
@@ -84,48 +84,61 @@ export default function ScenarioPlayer() {
 
     }
 
-    /**
-     * Once the scenario has been loaded,
-     * pass it to the ScenarioContent component
-     * to begin the simulation.
-     */
-    return <ScenarioContent scenario={scenario} />;
+
+
+    return (
+
+        <ScenarioContent
+            scenario={scenario}
+        />
+
+    );
 
 }
 
 
-/**
- * Runs an already loaded scenario.
- *
- * This component connects the scenario engine to
- * the visual interface by providing the current node
- * and navigation functions to the Card component.
- *
- * @param {Object} scenario - Scenario JSON loaded from the backend.
- */
-function ScenarioContent({ scenario }) {
 
-    /**
-     * Initializes the custom hook that controls
-     * the scenario execution.
-     */
+
+
+/**
+ * Controls the execution of an already loaded scenario.
+ *
+ * Connects:
+ *
+ * JSON Scenario
+ *       |
+ *       ↓
+ * useScenario Hook
+ *       |
+ *       ↓
+ * Card Component
+ *
+ *
+ * @param {Object} scenario - Loaded scenario JSON
+ */
+function ScenarioContent({
+    scenario
+}) {
+
+
     const {
+
         currentNode,
+
         next
+
     } = useScenario(scenario);
 
-    /**
-     * Display the current scenario card.
-     *
-     * The Card component is responsible only for
-     * presenting the current node and notifying
-     * the hook when the learner wants to continue.
-     */
+
+
     return (
 
         <Card
+
             node={currentNode}
+
             onNext={next}
+
         />
 
     );
