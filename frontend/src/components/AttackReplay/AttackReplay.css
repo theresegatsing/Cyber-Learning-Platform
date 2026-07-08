@@ -1,0 +1,65 @@
+.attack-replay {
+
+    padding: 20px;
+
+}
+
+
+.timeline {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+
+.timeline-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+
+.stage-number {
+
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+}
+
+
+
+.stage-content {
+
+    text-align: center;
+
+}
+
+
+
+.arrow {
+
+    font-size: 30px;
+
+}
