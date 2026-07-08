@@ -2,33 +2,36 @@
  * ============================================================================
  * App.jsx
  * ----------------------------------------------------------------------------
- * Main entry component of the React application.
+ * Root component of the Cyber Learning Platform.
  *
  * Responsibilities:
- * - Defines the first page displayed when the application starts.
- * - Acts as the connection point between different pages.
+ * - Acts as the entry point of the application's user interface.
+ * - Displays the Home page when the application starts.
+ * - Will later manage navigation between pages using React Router.
  *
- * Later:
- * - React Router will be added here.
- * - Routes will connect Home, ScenarioPlayer, and future pages.
+ * Current Flow:
+ *
+ * App
+ *  └── Home
+ *        └── ScenarioPlayer
+ *              └── Card
  * ============================================================================
  */
 
-
 import Home from "./pages/Home";
 
-
 /**
- * Root component of the application.
+ * Root component.
+ *
+ * For now, simply display the Home page.
+ * Later, this component will define application routes.
  */
-export default function App(){
-
+export default function App() {
 
     return (
 
         <Home />
 
     );
-
 
 }
