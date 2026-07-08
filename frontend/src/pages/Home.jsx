@@ -2,60 +2,45 @@
  * ============================================================================
  * Home.jsx
  * ----------------------------------------------------------------------------
- * Landing page of the cybersecurity learning platform.
+ * Landing page where learners select a cybersecurity system and scenario.
  *
- * Responsibilities:
- * - Allows users to choose a cybersecurity system.
- * - Allows users to select a scenario.
- * - Starts the selected simulation.
+ * Home does NOT run scenarios.
  *
- * Future improvements:
- * - Add cards with illustrations.
- * - Add animations.
- * - Load available scenarios dynamically from backend.
+ * It only sends the learner selection back to App.jsx.
+ *
+ * Flow:
+ *
+ * Home
+ *   |
+ *   | onStart(system, scenario)
+ *   ↓
+ * App
+ *   |
+ *   ↓
+ * ScenarioPlayer
+ *
  * ============================================================================
  */
 
 
 import { useState } from "react";
 
-import ScenarioPlayer from "./ScenarioPlayer";
+
+export default function Home({
+    onStart
+}) {
+
+
+    const [system,setSystem] =
+        useState(null);
 
 
 
-export default function Home(){
+    function startScenario(id){
 
-
-    /**
-     * Stores the selected system.
-     */
-    const [system, setSystem] = useState(null);
-
-
-
-    /**
-     * Stores the selected scenario.
-     */
-    const [scenarioId, setScenarioId] = useState(null);
-
-
-
-    /**
-     * Start the scenario.
-     */
-    if(system && scenarioId){
-
-
-        return (
-
-            <ScenarioPlayer
-
-                system={system}
-
-                scenarioId={scenarioId}
-
-            />
-
+        onStart(
+            system,
+            id
         );
 
     }
@@ -79,74 +64,55 @@ export default function Home(){
 
 
             <button
-
-                onClick={() => setSystem("database")}
-
+                onClick={() =>
+                    setSystem("database")
+                }
             >
-
                 Database
-
             </button>
 
 
 
             <button
-
-                onClick={() => setSystem("website")}
-
+                onClick={() =>
+                    setSystem("website")
+                }
             >
-
                 Website
-
             </button>
 
 
 
             <button
-
-                onClick={() => setSystem("network")}
-
+                onClick={() =>
+                    setSystem("network")
+                }
             >
-
                 Network
-
             </button>
-
 
 
 
 
             {
-                system && (
+                system === "database" && (
 
                     <div>
-
 
                         <h2>
                             Choose Scenario
                         </h2>
 
 
-                        {
-                            system === "database" && (
-
-                                <button
-
-                                    onClick={() =>
-                                        setScenarioId(
-                                            "misconfigured_firewalls"
-                                        )
-                                    }
-
-                                >
-
-                                    Misconfigured Firewalls
-
-                                </button>
-
-                            )
-
-                        }
+                        <button
+                            onClick={() =>
+                                startScenario(
+                                    "misconfigured_firewalls"
+                                )
+                            }
+                        >
+                            Misconfigured Firewalls
+                        </button>
 
 
                     </div>

@@ -2,42 +2,82 @@
  * ============================================================================
  * ScenarioPlayer.jsx
  * ----------------------------------------------------------------------------
- * This page is responsible for running a cybersecurity scenario.
+ *
+ * Main page responsible for executing a cybersecurity scenario.
  *
  * Responsibilities:
- * - Receives the selected system and scenario from the previous page.
- * - Requests the scenario JSON from the backend.
- * - Initializes the scenario engine through useScenario().
- * - Displays the current scenario card.
- * - Handles navigation back to the Home page when the learner exits.
  *
- * This is the main simulation screen where learners interact with scenarios.
+ * - Receives the selected system and scenario ID.
+ * - Fetches the scenario JSON from the backend.
+ * - Initializes the scenario engine through useScenario().
+ * - Controls navigation inside the scenario.
+ * - Handles leaving the scenario and returning to system selection.
+ *
+ * Flow:
+ *
+ * Home.jsx
+ *     |
+ *     | user selects weakness
+ *     ↓
+ *
+ * ScenarioPlayer.jsx
+ *     |
+ *     | loads JSON
+ *     ↓
+ *
+ * useScenario()
+ *     |
+ *     ↓
+ *
+ * Card.jsx
+ *
  * ============================================================================
  */
 
-import { useEffect, useState } from "react";
+
+import {
+    useEffect,
+    useState
+} from "react";
+
 
 import Card from "../components/Card/Card";
 
-import { fetchScenario } from "../api/scenarioApi";
 
-import { useScenario } from "../hooks/useScenario";
+import {
+    fetchScenario
+} from "../api/scenarioApi";
+
+
+import {
+    useScenario
+} from "../hooks/useScenario";
+
+
+
 
 
 /**
- * Loads and runs a selected cybersecurity scenario.
+ * Loads and runs one cybersecurity scenario.
  *
  * @param {Object} props
  *
- * @param {string} props.system
- * The selected cybersecurity system
- * (database, website, network).
+ * @param {string} system
+ * Selected cybersecurity system.
  *
- * @param {string} props.scenarioId
- * The selected weakness/scenario.
+ * Example:
+ * database
  *
- * @param {Function} props.onExit
- * Function used to return to the Home page.
+ *
+ * @param {string} scenarioId
+ * Selected weakness.
+ *
+ * Example:
+ * misconfigured_firewalls
+ *
+ *
+ * @param {Function} onExit
+ * Returns the learner to system selection.
  */
 export default function ScenarioPlayer({
 
@@ -49,44 +89,75 @@ export default function ScenarioPlayer({
 
 }) {
 
+
     /**
-     * Stores the scenario JSON loaded
-     * from the backend.
+     * Stores the scenario JSON.
      */
-    const [scenario, setScenario] = useState(null);
+    const [
+        scenario,
+        setScenario
+    ] = useState(null);
+
+
+
+
 
 
     /**
-     * Fetch the selected scenario whenever
-     * the selected system or scenario changes.
+     * Fetch scenario from backend.
      */
     useEffect(() => {
 
-        async function loadScenario() {
+
+        async function loadScenario(){
+
 
             const data = await fetchScenario(
+
                 system,
+
                 scenarioId
+
             );
+
+
 
             setScenario(data);
 
+
         }
+
+
 
         loadScenario();
 
-    }, [system, scenarioId]);
+
+
+    },[system,scenarioId]);
+
+
+
+
 
 
     /**
-     * Display a loading message while waiting
-     * for the backend response.
+     * Loading state.
      */
-    if (!scenario) {
+    if(!scenario){
 
-        return <h2>Loading scenario...</h2>;
+
+        return (
+
+            <h2>
+                Loading scenario...
+            </h2>
+
+        );
 
     }
+
+
+
 
 
     return (
@@ -104,23 +175,26 @@ export default function ScenarioPlayer({
 }
 
 
+
+
+
+
+
+
+
 /**
- * Executes an already loaded scenario.
+ * Runs the loaded scenario.
  *
- * This component connects the scenario engine
- * to the user interface.
+ * This connects:
  *
- * It provides:
- * - current scenario node
- * - navigation functions
- * - attack replay data
- * - prevention data
+ * JSON
+ *  |
+ *  ↓
+ * Engine
+ *  |
+ *  ↓
+ * UI
  *
- * to the Card component.
- *
- * @param {Object} props
- * @param {Object} props.scenario
- * @param {Function} props.onExit
  */
 function ScenarioContent({
 
@@ -130,70 +204,117 @@ function ScenarioContent({
 
 }) {
 
-    /**
-     * Initialize the custom scenario hook.
-     */
+
+
     const {
+
 
         currentNode,
 
+
         next,
+
 
         back,
 
+
         canGoBack,
+
 
         stages,
 
+
         prevention
+
+
 
     } = useScenario(scenario);
 
 
-    /**
-     * Handles the Back button.
-     *
-     * If the learner has previously visited
-     * another scenario node, move back one step.
-     *
-     * Otherwise, exit the scenario and return
-     * to the Home page.
-     */
-    function handleBack() {
 
-        if (canGoBack()) {
+
+
+
+
+    /**
+     * Handles navigation backward.
+     *
+     * Two cases:
+     *
+     * Case 1:
+     *
+     * User is inside scenario:
+     *
+     * Attack step 3
+     *       ↓
+     * Attack step 2
+     *
+     *
+     * Case 2:
+     *
+     * User is at first card:
+     *
+     * Scenario
+     *       ↓
+     * Systems
+     *
+     */
+    function handleBack(){
+
+
+
+        if(canGoBack()){
+
 
             back();
 
+
         }
 
-        else {
+        else{
+
 
             onExit();
 
+
         }
+
 
     }
 
 
-    /**
-     * Render the current scenario card.
-     */
+
+
+
+
     return (
 
         <Card
 
+
             node={currentNode}
+
+
 
             onNext={next}
 
+
+
             onBack={handleBack}
+
+
 
             onExit={onExit}
 
+
+
             attackStages={stages}
 
+
+
             prevention={prevention}
+
+
 
         />
 

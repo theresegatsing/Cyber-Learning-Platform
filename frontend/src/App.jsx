@@ -2,58 +2,218 @@
  * ============================================================================
  * App.jsx
  * ----------------------------------------------------------------------------
+ *
  * Root component of the Cyber Learning Platform.
  *
  * Responsibilities:
- * - Acts as the entry point of the application's user interface.
- * - Displays the Home page when the application starts.
- * - Will later manage navigation between pages using React Router.
  *
- * Current Flow:
+ * - Controls the main application flow.
+ * - Displays system selection (Home).
+ * - Stores the selected cybersecurity system.
+ * - Stores the selected weakness/scenario.
+ * - Opens the selected scenario.
+ * - Returns the learner back to system selection.
+ *
+ *
+ * Application flow:
+ *
  *
  * App
- *  └── Home
- *        └── ScenarioPlayer
- *              └── Card
+ *  |
+ *  |
+ *  ├── Home
+ *  |      |
+ *  |      | user selects scenario
+ *  |      ↓
+ *  |
+ *  └── ScenarioPlayer
+ *          |
+ *          ↓
+ *       Card
+ *
+ *
  * ============================================================================
  */
 
-import Home from "./pages/Home";
-import ScenarioPlayer from "./pages/scenarioPlayer";
-import { useState } from "react";
 
-/**
- * Root component.
- *
- * For now, simply display the Home page.
- * Later, this component will define application routes.
- */
-export default function App() {
+import {
+    useState
+} from "react";
+
+
+import Home from "./pages/Home";
+
+
+import ScenarioPlayer from "./pages/ScenarioPlayer";
+
+
+
+
+
+export default function App(){
+
+
 
     /**
-    return (
+     * Controls which main screen
+     * is displayed.
+     *
+     * Possible values:
+     *
+     * home
+     * scenario
+     */
+    const [
+        page,
+        setPage
+    ] = useState("home");
 
-        <Home />
-
-    );
-    */
-
-    const [page,setPage]=useState("home");
 
 
-    if(page==="home"){
 
-    return <Home onStart={()=>setPage("scenario")}/>
+
+    /**
+     * Stores selected cybersecurity system.
+     *
+     * Example:
+     *
+     * database
+     * website
+     * network
+     */
+    const [
+        system,
+        setSystem
+    ] = useState(null);
+
+
+
+
+
+    /**
+     * Stores selected weakness.
+     *
+     * Example:
+     *
+     * misconfigured_firewalls
+     */
+    const [
+        scenarioId,
+        setScenarioId
+    ] = useState(null);
+
+
+
+
+
+
+
+
+    /**
+     * Called by Home.jsx
+     *
+     * Receives the learner's selection.
+     */
+    function startScenario(
+        selectedSystem,
+        selectedScenario
+    ){
+
+
+        setSystem(selectedSystem);
+
+
+        setScenarioId(selectedScenario);
+
+
+        setPage("scenario");
+
 
     }
 
 
+
+
+
+
+
+    /**
+     * Returns learner back
+     * to the system selection page.
+     *
+     * Used by:
+     *
+     * ScenarioPlayer
+     *      |
+     *      ↓
+     * Card Back button
+     */
+    function exitScenario(){
+
+
+        setSystem(null);
+
+
+        setScenarioId(null);
+
+
+        setPage("home");
+
+
+    }
+
+
+
+
+
+
+
+
+    /**
+     * Display Home page.
+     */
+    if(page==="home"){
+
+
+        return (
+
+            <Home
+
+                onStart={startScenario}
+
+            />
+
+        );
+
+    }
+
+
+
+
+
+
+    /**
+     * Display selected scenario.
+     */
     return (
 
-    <ScenarioPlayer
-    onExit={()=>setPage("home")}
-    />
+        <ScenarioPlayer
 
-    )
+
+            system={system}
+
+
+
+            scenarioId={scenarioId}
+
+
+
+            onExit={exitScenario}
+
+
+
+        />
+
+    );
 
 }

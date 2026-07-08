@@ -2,16 +2,23 @@
  * ============================================================================
  * Card.jsx
  * ----------------------------------------------------------------------------
+ *
  * Displays one active scenario node.
  *
- * The Card component does not know about:
- * - JSON files
- * - backend requests
- * - scenario navigation logic
+ * Card is responsible only for presentation.
  *
- * It only receives:
- * - the current node
- * - functions to move forward/backward
+ * It does NOT:
+ *
+ * - Load JSON files
+ * - Fetch backend data
+ * - Control navigation logic
+ *
+ * It receives:
+ *
+ * - Current scenario node
+ * - Navigation functions
+ * - Attack replay data
+ * - Prevention data
  *
  * ============================================================================
  */
@@ -19,25 +26,43 @@
 
 import "./Card.css";
 
-import { getImagePath } from "../../utils/imageLoader";
 
-import PreventionBlock from "../PreventionBlock/PreventionBlock";
+import {
+    getImagePath
+} from "../../utils/imageLoader";
+
 
 import AttackReplay from "../AttackReplay/AttackReplay";
 
 
 
+
+
 export default function Card({
+
     node,
+
     onNext,
+
     onBack,
+
     onExit,
+
     attackStages,
+
     prevention
+
 }) {
 
 
-    if (!node) {
+
+    /**
+     * Safety check.
+     *
+     * Prevents rendering
+     * before scenario data exists.
+     */
+    if(!node){
 
         return null;
 
@@ -45,8 +70,20 @@ export default function Card({
 
 
 
+
+
+
+    /**
+     * Converts JSON image reference
+     * into real frontend asset path.
+     */
     const imagePath =
         getImagePath(node.image);
+
+
+
+
+
 
 
 
@@ -55,86 +92,119 @@ export default function Card({
         <div className="card">
 
 
+
+
+
+
+
             {
+                node.type !== "attack_replay" &&
 
-            node.type !== "attack_replay" && (
-
-            <>
-
-                <h2>
-
-                    {node.title}
-
-                </h2>
+                <>
 
 
-                <p>
+                    <h2>
 
-                    {node.text}
+                        {node.title}
 
-                </p>
+                    </h2>
 
 
-                {
 
-                    imagePath && (
+                    <p>
+
+                        {node.text}
+
+                    </p>
+
+
+
+
+
+                    {
+                        imagePath &&
+
 
                         <img
+
                             src={imagePath}
+
                             alt={node.title}
+
                         />
 
-                    )
+                    }
 
-                }
 
-            </>
 
-            )
+                </>
 
             }
+
+
+
+
+
+
 
 
 
             {
                 node.type === "choice" &&
 
+
                 node.choices.map(
+
                     (choice,index)=>(
 
-                    <button
-                        key={index}
-                        onClick={() =>
-                            onNext(choice.next)
-                        }
-                    >
 
-                        {choice.text}
+                        <button
 
-                    </button>
+                            key={index}
 
-                ))
+                            onClick={() =>
+                                onNext(choice.next)
+                            }
+
+                        >
+
+                            {choice.text}
+
+                        </button>
+
+
+                    )
+
+                )
 
             }
+
+
+
+
+
 
 
 
 
             {
-                node.type === "attack_replay" && (
-                    <>
-                        <AttackReplay
-                            stages={attackStages}
-                        />
+                node.type === "attack_replay" &&
 
-                        <PreventionBlock
 
-                            preventionPoints={prevention}
+                <AttackReplay
 
-                        />
-                    </>
-                )
+                    stages={attackStages}
+
+                    prevention={prevention}
+
+                />
+
+
             }
+
+
+
+
 
 
 
@@ -142,36 +212,80 @@ export default function Card({
 
             {
                 node.type !== "choice" &&
+
+                node.type !== "attack_replay" &&
+
                 node.next &&
 
+
                 <button
+
                     onClick={() =>
                         onNext(node.next)
                     }
+
                 >
 
                     Continue
 
                 </button>
 
+
             }
+
 
 
 
 
             {
-                onBack && (
+                node.type === "attack_replay" &&
 
-                    <button
-                        onClick={onBack}
-                    >
+                node.next &&
 
-                        Back
 
-                    </button>
+                <button
 
-                )
+                    onClick={() =>
+                        onNext(node.next)
+                    }
+
+                >
+
+                    Continue
+
+                </button>
+
+
             }
+
+
+
+
+
+
+
+
+            {
+                onBack &&
+
+
+                <button
+
+                    onClick={onBack}
+
+                >
+
+                    Back
+
+                </button>
+
+
+            }
+
+
+
+
+
 
 
 
@@ -179,19 +293,24 @@ export default function Card({
             {
                 node.type === "summary" &&
 
+
                 <button
+
                     onClick={onExit}
+
                 >
 
                     Return to Systems
 
                 </button>
 
+
             }
 
 
 
         </div>
+
 
     );
 
