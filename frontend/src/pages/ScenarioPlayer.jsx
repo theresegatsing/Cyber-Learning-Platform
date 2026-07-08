@@ -139,6 +139,8 @@ function ScenarioContent({
 
             onNext={next}
 
+            onBack={back}
+
         />
 
     );
