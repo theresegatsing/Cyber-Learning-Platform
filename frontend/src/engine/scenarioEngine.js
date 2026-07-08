@@ -96,6 +96,34 @@ export function createScenarioEngine(scenarioData) {
     }
 
     /**
+     * Moves the scenario back to the previous node.
+     *
+     * The engine stores visited nodes inside history.
+     * The last visited node becomes the new current node.
+     */
+    function goBack(){
+
+
+        if(history.length === 0){
+
+            return;
+
+        }
+
+
+
+        const previousNode =
+            history.pop();
+
+
+
+        currentNodeId =
+            previousNode.nodeId;
+
+
+    }
+
+    /**
      * Returns the attack stage of the current node.
      *
      * This information is used to update the progress bar
@@ -172,6 +200,9 @@ export function createScenarioEngine(scenarioData) {
 
         // Moves to another node.
         goNext,
+
+        // Moves back to the previous node.
+        goBack,
 
         // Returns the current attack stage.
         getCurrentStage,

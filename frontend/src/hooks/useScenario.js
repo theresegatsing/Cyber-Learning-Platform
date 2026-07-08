@@ -80,6 +80,37 @@ export function useScenario(scenarioData) {
     }
 
     /**
+     * Moves the learner back to the previous card.
+     *
+     * Calls the scenario engine because the engine
+     * owns the current scenario position.
+     */
+    function back(){
+
+
+        engine.current.goBack();
+
+
+
+        setCurrentNode(
+
+            engine.current.getCurrentNode()
+
+        );
+
+
+
+        setHistory(
+
+            [
+                ...engine.current.getHistory()
+            ]
+
+        );
+
+    }
+
+    /**
      * Return everything the UI needs.
      *
      * Components such as Card, ProgressBar, Sidebar,
@@ -92,6 +123,9 @@ export function useScenario(scenarioData) {
 
         // Function used to move through the scenario.
         next,
+
+        // Function used to move back to the previous node.
+        back,
 
         // Complete list of attack stages.
         stages:

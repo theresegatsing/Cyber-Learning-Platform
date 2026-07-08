@@ -21,13 +21,16 @@ import "./Card.css";
 
 import { getImagePath } from "../../utils/imageLoader";
 
+import AttackReplay from "../AttackReplay/AttackReplay";
+
 
 
 export default function Card({
     node,
     onNext,
     onBack,
-    onExit
+    onExit,
+    attackStages
 }) {
 
 
@@ -101,18 +104,9 @@ export default function Card({
             {
                 node.type === "attack_replay" && (
 
-                    <div className="attack-replay">
-
-                        <h3>
-                            Attack Replay
-                        </h3>
-
-                        <p>
-                            Review how the attacker moved
-                            through this attack.
-                        </p>
-
-                    </div>
+                    <AttackReplay
+                        stages={attackStages}
+                    />
 
                 )
             }

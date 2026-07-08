@@ -125,7 +125,11 @@ function ScenarioContent({
 
         currentNode,
 
-        next
+        next,
+
+        back,
+
+        stages
 
     } = useScenario(scenario);
 
@@ -140,6 +144,8 @@ function ScenarioContent({
             onNext={next}
 
             onBack={back}
+
+            attackStages={stages}
 
         />
 
