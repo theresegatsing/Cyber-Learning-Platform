@@ -1,91 +1,218 @@
-import { useState, useRef } from "react";
-import { createScenarioEngine } from "../engine/scenarioEngine";
-
 /**
- * Custom React hook that manages the execution of a cybersecurity scenario.
+ * ============================================================================
+ * useScenario.js
+ * ----------------------------------------------------------------------------
+ * Custom React hook responsible for controlling the execution of a
+ * cybersecurity scenario.
  *
  * Responsibilities:
- * - Creates a scenario engine for the selected JSON scenario.
- * - Keeps track of the current card (node) being displayed.
- * - Records the user's attack path (history).
- * - Exposes scenario information to the UI.
  *
- * @param {Object} scenarioData - Complete scenario loaded from a JSON file.
+ * - Creates and manages the scenario engine.
+ * - Keeps track of the current scenario card.
+ * - Moves forward and backward through the attack simulation.
+ * - Stores the learner's attack path.
+ * - Exposes scenario information to UI components.
  *
- * @returns {Object} An object containing:
- *  - currentNode: Current card displayed to the user.
- *  - next(): Moves to the next node.
- *  - stages: Complete attack pipeline.
- *  - currentStage: Current attack stage.
- *  - history: Nodes already visited.
- *  - prevention: Prevention techniques for this scenario.
+ * The hook acts as the connection layer between:
+ *
+ * Scenario JSON
+ *      |
+ *      ↓
+ * Scenario Engine
+ *      |
+ *      ↓
+ * React Components (Card, Sidebar, ProgressBar, AttackReplay)
+ *
+ * ============================================================================
+ */
+
+
+import { useState, useRef, useEffect } from "react";
+
+import { createScenarioEngine } from "../engine/scenarioEngine";
+
+
+
+/**
+ * Controls the execution of one cybersecurity scenario.
+ *
+ * @param {Object} scenarioData
+ * Complete scenario JSON loaded from the backend.
+ *
+ * Example:
+ *
+ * {
+ *    id: "misconfigured_firewalls",
+ *    system: "database",
+ *    nodes: [...]
+ * }
+ *
+ *
+ * @returns {Object}
+ *
+ * currentNode
+ *      The card currently displayed.
+ *
+ * next()
+ *      Moves the learner forward.
+ *
+ * back()
+ *      Returns to the previous card.
+ *
+ * canGoBack()
+ *      Checks whether backward navigation is possible.
+ *
+ * stages
+ *      Complete attack pipeline.
+ *
+ * currentStage
+ *      Current step in the attack pipeline.
+ *
+ * history
+ *      Nodes already visited by the learner.
+ *
+ * prevention
+ *      Security recommendations.
  */
 export function useScenario(scenarioData) {
 
+
     /**
-     * Creates ONE scenario engine instance.
+     * Stores the scenario engine instance.
      *
-     * useRef() is used instead of useState() because the engine should
-     * remain the same during re-renders. Only its internal state changes.
+     * useRef is used because the engine contains internal state
+     * that should persist between React renders.
      */
     const engine = useRef(
         createScenarioEngine(scenarioData)
     );
 
+
+
     /**
-     * Stores the node (card) currently displayed on the screen.
+     * When a new scenario is selected,
+     * create a completely new engine.
      *
-     * Initially, this is the node whose id equals scenarioData.start.
+     * Example:
+     *
+     * Database Scenario
+     *        |
+     *        ↓
+     * Return Home
+     *        |
+     *        ↓
+     * Network Scenario
+     *
+     * The second scenario should not reuse
+     * the first scenario's history.
+     */
+    useEffect(() => {
+
+
+        engine.current =
+            createScenarioEngine(scenarioData);
+
+
+
+        setCurrentNode(
+
+            engine.current.getCurrentNode()
+
+        );
+
+
+
+        setHistory([]);
+
+
+
+    }, [scenarioData]);
+
+
+
+
+    /**
+     * Stores the card currently displayed.
+     *
+     * Initially, this is the node defined
+     * by scenarioData.start.
      */
     const [currentNode, setCurrentNode] =
         useState(
+
             engine.current.getCurrentNode()
+
         );
 
+
+
     /**
-     * Stores every node the learner has already visited.
+     * Stores the learner's path through
+     * the attack simulation.
      *
-     * This will later be used to:
-     * - build the attack replay
-     * - visualize the attack path
-     * - generate training reports
+     * Used later for:
+     *
+     * - Attack Replay
+     * - Learning analytics
+     * - Training reports
      */
     const [history, setHistory] =
         useState([]);
 
+
+
+
     /**
-     * Advances the simulation to another node.
+     * Move the learner forward.
      *
-     * Steps:
-     * 1. Tell the engine to move to the next node.
-     * 2. Update the current card displayed.
-     * 3. Update the user's attack history.
+     * Example:
      *
-     * @param {string} nextId - ID of the next node.
+     * intro
+     *   |
+     *   ↓
+     * weakness
+     *
+     *
+     * @param {string} nextId
+     * ID of the next scenario node.
      */
     function next(nextId) {
 
-        // Move the engine to the next node.
+
         engine.current.goNext(nextId);
 
-        // Display the new node.
+
+
         setCurrentNode(
+
             engine.current.getCurrentNode()
+
         );
 
-        // Save the updated attack path.
+
+
         setHistory(
-            [...engine.current.getHistory()]
+
+            [
+                ...engine.current.getHistory()
+            ]
+
         );
+
     }
 
+
+
+
+
     /**
-     * Moves the learner back to the previous card.
+     * Move the learner back to the previous node.
      *
-     * Calls the scenario engine because the engine
-     * owns the current scenario position.
+     * The engine stores the previous path,
+     * so the hook only requests the new location
+     * and updates React state.
      */
-    function back(){
+    function back() {
 
 
         engine.current.goBack();
@@ -110,49 +237,105 @@ export function useScenario(scenarioData) {
 
     }
 
-    /**
-     * Returns true if the learner can go back to a previous node.
-    */
-     
-    function canGoBack(){
 
-        return engine.current.getHistory().length > 0;
+
+
+
+    /**
+     * Determines whether the Back button
+     * should move inside the scenario.
+     *
+     * If false:
+     * - The learner is at the first card.
+     * - The UI can return to system selection.
+     *
+     * @returns {boolean}
+     */
+    function canGoBack() {
+
+
+        return (
+
+            engine.current.getHistory().length > 0
+
+        );
 
     }
 
+
+
+
+
     /**
-     * Return everything the UI needs.
-     *
-     * Components such as Card, ProgressBar, Sidebar,
-     * and Attack Replay will consume these values.
+     * Values exposed to React components.
      */
     return {
 
-        // Current card being displayed.
+
+        /**
+         * Current scenario card.
+         */
         currentNode,
 
-        // Function used to move through the scenario.
+
+
+        /**
+         * Move forward.
+         */
         next,
 
-        // Function used to move back to the previous node.
+
+
+        /**
+         * Move backward.
+         */
         back,
 
-        // Returns true if the learner can go back to a previous node.
+
+
+        /**
+         * Check backward navigation.
+         */
         canGoBack,
 
-        // Complete list of attack stages.
+
+
+        /**
+         * Complete attack pipeline.
+         *
+         * Example:
+         *
+         * Network Exposure
+         * Service Discovery
+         * Unauthorized Access
+         */
         stages:
+
             engine.current.getStages(),
 
-        // Current stage of the attack.
+
+
+        /**
+         * Current attack stage.
+         */
         currentStage:
+
             engine.current.getCurrentStage(),
 
-        // User's completed attack path.
+
+
+        /**
+         * Learner's path through the attack.
+         */
         history,
 
-        // Prevention recommendations for the scenario.
+
+
+        /**
+         * Security recommendations.
+         */
         prevention:
+
             engine.current.getPreventionPoints()
 
     };

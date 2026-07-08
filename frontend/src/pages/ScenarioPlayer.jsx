@@ -9,11 +9,11 @@
  * - Requests the scenario JSON from the backend.
  * - Initializes the scenario engine through useScenario().
  * - Displays the current scenario card.
+ * - Handles navigation back to the Home page when the learner exits.
  *
  * This is the main simulation screen where learners interact with scenarios.
  * ============================================================================
  */
-
 
 import { useEffect, useState } from "react";
 
@@ -28,55 +28,59 @@ import { useScenario } from "../hooks/useScenario";
  * Loads and runs a selected cybersecurity scenario.
  *
  * @param {Object} props
- * @param {string} props.system - Category of scenario
- *                                (database, website, network)
  *
- * @param {string} props.scenarioId - Specific scenario identifier
- *                                    (misconfigured_firewalls, weak_passwords)
+ * @param {string} props.system
+ * The selected cybersecurity system
+ * (database, website, network).
+ *
+ * @param {string} props.scenarioId
+ * The selected weakness/scenario.
+ *
+ * @param {Function} props.onExit
+ * Function used to return to the Home page.
  */
 export default function ScenarioPlayer({
+
     system,
-    scenarioId
+
+    scenarioId,
+
+    onExit
+
 }) {
 
-
     /**
-     * Stores the scenario JSON received from the backend.
+     * Stores the scenario JSON loaded
+     * from the backend.
      */
     const [scenario, setScenario] = useState(null);
 
 
-
     /**
-     * Fetch the selected scenario when the page loads.
+     * Fetch the selected scenario whenever
+     * the selected system or scenario changes.
      */
     useEffect(() => {
 
-
         async function loadScenario() {
-
 
             const data = await fetchScenario(
                 system,
                 scenarioId
             );
 
-
             setScenario(data);
 
         }
 
-
         loadScenario();
-
 
     }, [system, scenarioId]);
 
 
-
     /**
-     * Display loading state while waiting
-     * for backend response.
+     * Display a loading message while waiting
+     * for the backend response.
      */
     if (!scenario) {
 
@@ -85,55 +89,50 @@ export default function ScenarioPlayer({
     }
 
 
-
     return (
 
         <ScenarioContent
+
             scenario={scenario}
+
+            onExit={onExit}
+
         />
 
     );
 
 }
 
-function handleBack(){
-
-    if(canGoBack()){
-
-        back();
-
-    }
-    else{
-
-        onExit();
-
-    }
-
-}
-
-
 
 /**
- * Controls the execution of an already loaded scenario.
+ * Executes an already loaded scenario.
  *
- * Connects:
+ * This component connects the scenario engine
+ * to the user interface.
  *
- * JSON Scenario
- *       |
- *       ↓
- * useScenario Hook
- *       |
- *       ↓
- * Card Component
+ * It provides:
+ * - current scenario node
+ * - navigation functions
+ * - attack replay data
+ * - prevention data
  *
+ * to the Card component.
  *
- * @param {Object} scenario - Loaded scenario JSON
+ * @param {Object} props
+ * @param {Object} props.scenario
+ * @param {Function} props.onExit
  */
 function ScenarioContent({
-    scenario
+
+    scenario,
+
+    onExit
+
 }) {
 
-
+    /**
+     * Initialize the custom scenario hook.
+     */
     const {
 
         currentNode,
@@ -144,12 +143,42 @@ function ScenarioContent({
 
         canGoBack,
 
-        stages
+        stages,
+
+        prevention
 
     } = useScenario(scenario);
 
 
+    /**
+     * Handles the Back button.
+     *
+     * If the learner has previously visited
+     * another scenario node, move back one step.
+     *
+     * Otherwise, exit the scenario and return
+     * to the Home page.
+     */
+    function handleBack() {
 
+        if (canGoBack()) {
+
+            back();
+
+        }
+
+        else {
+
+            onExit();
+
+        }
+
+    }
+
+
+    /**
+     * Render the current scenario card.
+     */
     return (
 
         <Card
@@ -160,7 +189,11 @@ function ScenarioContent({
 
             onBack={handleBack}
 
+            onExit={onExit}
+
             attackStages={stages}
+
+            prevention={prevention}
 
         />
 

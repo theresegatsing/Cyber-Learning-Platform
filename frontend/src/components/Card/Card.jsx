@@ -21,6 +21,8 @@ import "./Card.css";
 
 import { getImagePath } from "../../utils/imageLoader";
 
+import PreventionBlock from "../PreventionBlock/PreventionBlock";
+
 import AttackReplay from "../AttackReplay/AttackReplay";
 
 
@@ -30,7 +32,8 @@ export default function Card({
     onNext,
     onBack,
     onExit,
-    attackStages
+    attackStages,
+    prevention
 }) {
 
 
@@ -52,27 +55,43 @@ export default function Card({
         <div className="card">
 
 
-            <h2>
-                {node.title}
-            </h2>
-
-
-
-            <p>
-                {node.text}
-            </p>
-
-
-
             {
-                imagePath && (
 
-                    <img
-                        src={imagePath}
-                        alt={node.title}
-                    />
+            node.type !== "attack_replay" && (
 
-                )
+            <>
+
+                <h2>
+
+                    {node.title}
+
+                </h2>
+
+
+                <p>
+
+                    {node.text}
+
+                </p>
+
+
+                {
+
+                    imagePath && (
+
+                        <img
+                            src={imagePath}
+                            alt={node.title}
+                        />
+
+                    )
+
+                }
+
+            </>
+
+            )
+
             }
 
 
@@ -103,11 +122,17 @@ export default function Card({
 
             {
                 node.type === "attack_replay" && (
+                    <>
+                        <AttackReplay
+                            stages={attackStages}
+                        />
 
-                    <AttackReplay
-                        stages={attackStages}
-                    />
+                        <PreventionBlock
 
+                            preventionPoints={prevention}
+
+                        />
+                    </>
                 )
             }
 
