@@ -44,18 +44,7 @@ export default function AttackReplay({ stages }) {
         <div className="attack-replay">
 
 
-            <h2>
-                Attack Replay
-            </h2>
-
-
-            <p className="replay-description">
-
-                Review how the attacker moved through the system.
-
-            </p>
-
-
+            
 
             <div className="timeline">
 

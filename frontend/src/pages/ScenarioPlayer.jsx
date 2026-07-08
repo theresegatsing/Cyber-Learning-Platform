@@ -96,7 +96,20 @@ export default function ScenarioPlayer({
 
 }
 
+function handleBack(){
 
+    if(canGoBack()){
+
+        back();
+
+    }
+    else{
+
+        onExit();
+
+    }
+
+}
 
 
 
@@ -129,6 +142,8 @@ function ScenarioContent({
 
         back,
 
+        canGoBack,
+
         stages
 
     } = useScenario(scenario);
@@ -143,7 +158,7 @@ function ScenarioContent({
 
             onNext={next}
 
-            onBack={back}
+            onBack={handleBack}
 
             attackStages={stages}
 

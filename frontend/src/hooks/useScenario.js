@@ -111,6 +111,16 @@ export function useScenario(scenarioData) {
     }
 
     /**
+     * Returns true if the learner can go back to a previous node.
+    */
+     
+    function canGoBack(){
+
+        return engine.current.getHistory().length > 0;
+
+    }
+
+    /**
      * Return everything the UI needs.
      *
      * Components such as Card, ProgressBar, Sidebar,
@@ -126,6 +136,9 @@ export function useScenario(scenarioData) {
 
         // Function used to move back to the previous node.
         back,
+
+        // Returns true if the learner can go back to a previous node.
+        canGoBack,
 
         // Complete list of attack stages.
         stages:

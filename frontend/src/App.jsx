@@ -19,6 +19,8 @@
  */
 
 import Home from "./pages/Home";
+import ScenarioPlayer from "./pages/scenarioPlayer";
+import { useState } from "react";
 
 /**
  * Root component.
@@ -28,10 +30,30 @@ import Home from "./pages/Home";
  */
 export default function App() {
 
+    /**
     return (
 
         <Home />
 
     );
+    */
+
+    const [page,setPage]=useState("home");
+
+
+    if(page==="home"){
+
+    return <Home onStart={()=>setPage("scenario")}/>
+
+    }
+
+
+    return (
+
+    <ScenarioPlayer
+    onExit={()=>setPage("home")}
+    />
+
+    )
 
 }
