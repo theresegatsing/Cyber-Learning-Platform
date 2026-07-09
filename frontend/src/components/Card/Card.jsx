@@ -77,10 +77,20 @@ export default function Card({
      * Converts JSON image reference
      * into real frontend asset path.
      */
-    const imagePath =
-        getImagePath(node.image);
+    // const imagePath =
+    //    getImagePath(node.image);
 
+    
+    const imagePath = node.image
+    ? (
+        node.image.startsWith("icons/")
+            ? `/src/assets/${node.image}`
+            : `/src/assets/illustrations/${node.image}`
+      )
+    : null;
 
+    console.log("JSON image:", node.image);
+    console.log("Resolved image:", imagePath);
 
 
 
