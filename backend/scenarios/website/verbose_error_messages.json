@@ -63,7 +63,7 @@
       "stage": "application_error",
       "title": "Scenario",
       "text": "A company website encounters an unexpected error while processing a user's request.",
-      "image": "website/error_page.png",
+      "image": "website/error_page.jpg",
       "next": "what_is_error"
     },
 
@@ -73,7 +73,6 @@
       "stage": "application_error",
       "title": "What Are Error Messages?",
       "text": "When something goes wrong, web applications display error messages. These messages should help users understand that an error occurred without revealing technical details about the system.",
-      "image": "website/application_error.png",
       "next": "weakness"
     },
 
@@ -83,7 +82,6 @@
       "stage": "information_disclosure",
       "title": "Verbose Error Messages",
       "text": "Instead of showing a simple message, the website displays detailed technical information such as software versions, database errors, file paths, or application configuration details.",
-      "image": "website/error_details.png",
       "next": "goal"
     },
 
@@ -93,7 +91,7 @@
       "stage": "reconnaissance",
       "title": "Attacker Goal",
       "text": "The attacker wants to learn how the website is built by analyzing the information exposed in its error messages.",
-      "image": "website/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +122,7 @@
       "stage": "reconnaissance",
       "title": "Try Again",
       "text": "Verbose error messages do not directly compromise the system, but they provide valuable information that attackers can use during reconnaissance.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +132,6 @@
       "stage": "attack_planning",
       "title": "Reconnaissance Successful",
       "text": "The attacker gathers information such as application frameworks, software versions, database names, file locations, or configuration details. This information helps them identify potential vulnerabilities to target.",
-      "image": "website/reconnaissance.png",
       "next": "impact"
     },
 
@@ -144,7 +141,6 @@
       "stage": "targeted_attack",
       "title": "Impact",
       "text": "Although verbose error messages do not directly compromise the application, they significantly increase the likelihood of successful attacks by providing attackers with valuable intelligence about the system.",
-      "image": "website/information_leak.png",
       "next": "remediation"
     },
 
@@ -154,7 +150,6 @@
       "stage": "targeted_attack",
       "title": "How to Prevent This",
       "text": "Display generic error messages to users, log detailed errors internally for administrators, remove sensitive technical information from public error pages, and regularly review application logs to identify recurring issues.",
-      "image": "website/security_fix.png",
       "next": "attack_replay"
     },
 
@@ -163,7 +158,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how detailed error messages unintentionally revealed information that allowed an attacker to better understand and target the web application.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +166,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Verbose error messages assist attackers during the reconnaissance phase by exposing technical details about an application. Generic user-facing errors and secure internal logging help reduce this risk.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

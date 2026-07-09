@@ -63,7 +63,7 @@
       "stage": "session_creation",
       "title": "Scenario",
       "text": "A web application keeps users logged in using session-based authentication after they enter their credentials.",
-      "image": "website/login_page.png",
+      "image": "website/login_page.jpg",
       "next": "what_is_session"
     },
 
@@ -73,7 +73,6 @@
       "stage": "session_creation",
       "title": "What is a Session?",
       "text": "A session is a mechanism used by web applications to remember a user after they log in, allowing them to stay authenticated across multiple requests.",
-      "image": "website/session_flow.png",
       "next": "weakness"
     },
 
@@ -83,7 +82,6 @@
       "stage": "weak_session_protection",
       "title": "Weak Session Management",
       "text": "Weak session management occurs when session identifiers are predictable, poorly protected, or not properly invalidated, making it easier for attackers to take over active sessions.",
-      "image": "website/session_warning.png",
       "next": "goal"
     },
 
@@ -93,7 +91,7 @@
       "stage": "session_interception",
       "title": "Attacker Goal",
       "text": "The attacker wants to gain control of an active user session in order to impersonate a legitimate user without knowing their password.",
-      "image": "website/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +122,7 @@
       "stage": "session_interception",
       "title": "Try Again",
       "text": "Weak session management affects how user sessions are created and protected, allowing attackers to reuse or steal valid session tokens.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +132,7 @@
       "stage": "session_hijacking",
       "title": "Session Hijacking",
       "text": "The attacker successfully obtains or predicts a valid session token and uses it to impersonate the victim user.",
-      "image": "website/session_takeover.png",
+      "image": "website/session_takeover.jpg",
       "next": "impact"
     },
 
@@ -144,7 +142,6 @@
       "stage": "unauthorized_actions",
       "title": "Impact",
       "text": "Session hijacking can lead to unauthorized actions such as account changes, data theft, and unauthorized transactions performed under the victim's identity.",
-      "image": "website/data_leak.png",
       "next": "remediation"
     },
 
@@ -154,7 +151,6 @@
       "stage": "unauthorized_actions",
       "title": "How to Prevent This",
       "text": "Organizations should generate secure session identifiers, use secure cookie settings (HttpOnly, Secure, SameSite), expire sessions after inactivity, and invalidate sessions immediately after logout.",
-      "image": "website/security_fix.png",
       "next": "attack_replay"
     },
 
@@ -163,7 +159,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how a weak session mechanism allowed an attacker to take over an active user session and impersonate a legitimate user.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +167,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Weak session management allows attackers to hijack active sessions and impersonate users. Strong session handling practices are essential to protect authenticated users.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

@@ -63,7 +63,7 @@
       "stage": "role_assumption",
       "title": "Scenario",
       "text": "A web application allows users to log in and access different pages depending on their role, such as regular users and administrators.",
-      "image": "website/login_page.png",
+      "image": "website/login_page.jpg",
       "next": "what_is_access_control"
     },
 
@@ -73,7 +73,6 @@
       "stage": "role_assumption",
       "title": "What is Access Control?",
       "text": "Access control determines what authenticated users are allowed to see or do within a web application. It ensures that users can only access resources that match their assigned permissions.",
-      "image": "website/access_control.png",
       "next": "weakness"
     },
 
@@ -83,7 +82,7 @@
       "stage": "weak_authorization",
       "title": "Broken Access Control",
       "text": "Broken access control occurs when a website fails to properly enforce authorization rules, allowing users to access pages or perform actions they should not be permitted to.",
-      "image": "website/security_warning.png",
+      "image": "icons/warning.jpg",
       "next": "goal"
     },
 
@@ -93,7 +92,7 @@
       "stage": "unauthorized_access_attempt",
       "title": "Attacker Goal",
       "text": "The attacker wants to access restricted pages or administrative functions that are normally unavailable to regular users.",
-      "image": "website/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +123,7 @@
       "stage": "unauthorized_access_attempt",
       "title": "Try Again",
       "text": "Attackers do not modify system security directly. They attempt to access restricted resources that are not properly protected.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +133,6 @@
       "stage": "access_bypass",
       "title": "Access Control Bypass",
       "text": "Due to missing or weak authorization checks, the attacker successfully accesses restricted functionality or pages intended only for privileged users.",
-      "image": "website/access_granted.png",
       "next": "impact"
     },
 
@@ -144,7 +142,6 @@
       "stage": "data_or_function_access",
       "title": "Impact",
       "text": "Broken access control can lead to exposure of sensitive data, unauthorized modifications, and misuse of administrative features.",
-      "image": "website/data_leak.png",
       "next": "remediation"
     },
 
@@ -154,7 +151,6 @@
       "stage": "data_or_function_access",
       "title": "How to Prevent This",
       "text": "Organizations should enforce authorization checks on every request, apply the principle of least privilege, implement role-based access control (RBAC), and regularly test permissions across different user roles.",
-      "image": "website/security_fix.png",
       "next": "attack_replay"
     },
 
@@ -163,7 +159,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how missing authorization checks allowed an attacker to bypass restrictions and access sensitive functionality.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +167,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Broken access control is one of the most critical web vulnerabilities, allowing attackers to bypass restrictions and access unauthorized resources if proper authorization checks are not enforced.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

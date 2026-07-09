@@ -63,7 +63,6 @@
       "stage": "file_upload",
       "title": "Scenario",
       "text": "A company website allows users to upload files such as resumes, profile pictures, and documents.",
-      "image": "website/file_upload.png",
       "next": "what_is_upload"
     },
 
@@ -73,7 +72,7 @@
       "stage": "file_upload",
       "title": "How File Uploads Work",
       "text": "When a user uploads a file, the website receives it, validates it, stores it, and may later display or process it.",
-      "image": "website/upload_process.png",
+      "image": "website/upload_process.jpg",
       "next": "weakness"
     },
 
@@ -83,7 +82,7 @@
       "stage": "weak_validation",
       "title": "Improper File Upload Validation",
       "text": "The website only checks the file extension and does not verify the actual file type or content. As a result, malicious files can bypass validation and be uploaded successfully.",
-      "image": "website/file_warning.png",
+      "image": "website/file_warning.jpg",
       "next": "goal"
     },
 
@@ -93,7 +92,7 @@
       "stage": "malicious_upload",
       "title": "Attacker Goal",
       "text": "The attacker wants to upload a malicious file that the website accepts as a legitimate upload.",
-      "image": "website/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +123,7 @@
       "stage": "malicious_upload",
       "title": "Try Again",
       "text": "Weak upload validation occurs when websites trust file names or extensions instead of verifying what the file actually contains.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +133,6 @@
       "stage": "file_execution",
       "title": "Malicious File Accepted",
       "text": "The website stores and processes the uploaded file because it passed the weak validation checks. The attacker can now exploit how the application handles that file.",
-      "image": "website/malicious_upload.png",
       "next": "impact"
     },
 
@@ -144,7 +142,7 @@
       "stage": "system_compromise",
       "title": "Impact",
       "text": "Improper file upload validation can allow attackers to execute malicious code, spread malware, overwrite files, or gain unauthorized access to the application.",
-      "image": "website/system_compromise.png",
+      "image": "website/system_compromise.jpg",
       "next": "remediation"
     },
 
@@ -154,7 +152,6 @@
       "stage": "system_compromise",
       "title": "How to Prevent This",
       "text": "Organizations should allow only approved file types, verify the actual file contents, scan uploaded files for malware, enforce file size limits, and store uploaded files outside publicly accessible directories.",
-      "image": "website/security_fix.png",
       "next": "attack_replay"
     },
 
@@ -163,7 +160,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how weak upload validation allowed a malicious file to bypass security checks and compromise the web application.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +168,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Improper file upload validation can expose a web application to malware and other attacks. Validating file content, scanning uploads, and securely storing files are essential security practices.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

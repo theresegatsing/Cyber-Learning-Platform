@@ -63,7 +63,7 @@
       "stage": "api_exposure",
       "title": "Scenario",
       "text": "A web application uses APIs to allow users and systems to interact with backend services such as retrieving or updating data.",
-      "image": "website/api_system.png",
+      "image": "website/api_system.jpg",
       "next": "what_is_api"
     },
 
@@ -73,7 +73,6 @@
       "stage": "api_exposure",
       "title": "What is an API?",
       "text": "An API (Application Programming Interface) allows different systems to communicate and exchange data. Web applications use APIs to fetch or modify information from backend services.",
-      "image": "website/api_flow.png",
       "next": "weakness"
     },
 
@@ -83,7 +82,6 @@
       "stage": "weak_authentication",
       "title": "Insecure API Endpoints",
       "text": "Insecure API endpoints occur when APIs are exposed without proper authentication or authorization, allowing attackers to access sensitive data or functions.",
-      "image": "website/api_warning.png",
       "next": "goal"
     },
 
@@ -93,7 +91,7 @@
       "stage": "endpoint_discovery",
       "title": "Attacker Goal",
       "text": "The attacker wants to discover and exploit insecure API endpoints to access sensitive data or perform unauthorized actions.",
-      "image": "website/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +122,7 @@
       "stage": "endpoint_discovery",
       "title": "Try Again",
       "text": "Attackers typically analyze exposed endpoints and look for missing authentication or authorization controls.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +132,6 @@
       "stage": "authorization_bypass",
       "title": "Authorization Bypass",
       "text": "Due to missing or weak access controls, the attacker successfully accesses API endpoints without proper permissions.",
-      "image": "website/api_access.png",
       "next": "impact"
     },
 
@@ -144,7 +141,6 @@
       "stage": "data_exposure",
       "title": "Impact",
       "text": "Insecure APIs can lead to data leaks, unauthorized modifications, and exposure of sensitive system functionality.",
-      "image": "website/data_leak.png",
       "next": "remediation"
     },
 
@@ -154,7 +150,6 @@
       "stage": "data_exposure",
       "title": "How to Prevent This",
       "text": "Organizations should require authentication for all sensitive API requests, enforce strict authorization checks, limit data exposure, and continuously monitor API usage for suspicious behavior.",
-      "image": "website/security_fix.png",
       "next": "attack_replay"
     },
 
@@ -163,7 +158,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how insecure API endpoints allowed unauthorized access to sensitive data and system functions.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +166,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Insecure API endpoints expose systems to unauthorized access and data leaks. Proper authentication, authorization, and monitoring are essential to secure APIs.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }
