@@ -63,7 +63,7 @@
       "stage": "network_configuration",
       "title": "Scenario",
       "text": "A company's network contains routers, switches, cloud resources, and servers that have been configured by different administrators over time.",
-      "image": "network/network_diagram.png",
+      "image": "network/network_topology.jpg",
       "next": "what_is_configuration"
     },
 
@@ -83,7 +83,7 @@
       "stage": "misconfiguration",
       "title": "Security Misconfigurations",
       "text": "Poorly configured security settings create some of the most exploitable network vulnerabilities. Common examples include overly permissive access controls, unchanged default credentials, and unrestricted cloud storage permissions.",
-      "image": "network/security_warning.png",
+      "image": "icons/warning.jpg",
       "next": "goal"
     },
 
@@ -93,7 +93,7 @@
       "stage": "weakness_discovery",
       "title": "Attacker Goal",
       "text": "The attacker wants to discover configuration mistakes that provide unauthorized access to network resources without exploiting software vulnerabilities.",
-      "image": "network/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +124,7 @@
       "stage": "weakness_discovery",
       "title": "Try Again",
       "text": "Misconfigurations are security settings that unintentionally expose systems. Strong authentication and regular audits help prevent these weaknesses.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +134,6 @@
       "stage": "unauthorized_access",
       "title": "Unauthorized Access",
       "text": "The attacker exploits one or more configuration weaknesses. For example, they may log in using unchanged default credentials, access resources because permissions are too broad, or discover sensitive information stored in publicly accessible cloud storage.",
-      "image": "network/network_access.png",
       "next": "impact"
     },
 
@@ -144,7 +143,6 @@
       "stage": "network_compromise",
       "title": "Impact",
       "text": "Network misconfigurations can expose confidential data, allow unauthorized access to critical systems, and increase the likelihood of larger security breaches throughout the organization.",
-      "image": "network/network_breach.png",
       "next": "remediation"
     },
 
@@ -154,7 +152,7 @@
       "stage": "network_compromise",
       "title": "How to Prevent This",
       "text": "Organizations should apply the principle of least privilege, replace all default credentials, enforce strong authentication, regularly review security configurations, restrict access to cloud resources, and perform periodic configuration audits to identify and correct security weaknesses.",
-      "image": "network/security_monitoring.png",
+      "image": "network/security_monitoring.jpg",
       "next": "attack_replay"
     },
 
@@ -163,7 +161,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how several small configuration mistakes combined to give an attacker unauthorized access to sensitive network resources.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +169,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Security misconfigurations are among the most common causes of network breaches. Regular reviews, strong authentication, and proper access controls greatly reduce the risk of exploitation.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

@@ -63,7 +63,6 @@
       "stage": "dns_requests",
       "title": "Scenario",
       "text": "An organization relies on DNS servers so employees can access websites, cloud services, and internal applications throughout the day.",
-      "image": "network/dns_server.png",
       "next": "what_is_dns"
     },
 
@@ -73,7 +72,7 @@
       "stage": "dns_requests",
       "title": "What is DNS?",
       "text": "The Domain Name System (DNS) converts website names such as example.com into IP addresses that computers use to communicate. Almost every network request begins with a DNS lookup.",
-      "image": "network/dns_lookup.png",
+      "image": "network/dns_lookup.jpg",
       "next": "weakness"
     },
 
@@ -83,7 +82,6 @@
       "stage": "poor_monitoring",
       "title": "Insufficient DNS Monitoring",
       "text": "Because DNS traffic is often trusted, organizations may not inspect it carefully. Attackers take advantage of this by hiding malicious communication inside what appears to be normal DNS traffic.",
-      "image": "network/dns_traffic.png",
       "next": "goal"
     },
 
@@ -93,7 +91,7 @@
       "stage": "dns_tunneling",
       "title": "Attacker Goal",
       "text": "The attacker wants to secretly communicate with a compromised computer and transfer information without triggering security alerts.",
-      "image": "network/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +122,7 @@
       "stage": "dns_tunneling",
       "title": "Try Again",
       "text": "DNS tunneling works by hiding malicious communication inside normal-looking DNS requests, making it difficult to detect if DNS traffic is not monitored.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +132,6 @@
       "stage": "hidden_communication",
       "title": "DNS Tunneling",
       "text": "The attacker disguises malicious communication as ordinary DNS queries. Because the organization does not closely inspect DNS traffic, these communications pass through the network unnoticed.",
-      "image": "network/dns_tunnel.png",
       "next": "impact"
     },
 
@@ -144,7 +141,6 @@
       "stage": "data_exfiltration",
       "title": "Impact",
       "text": "The attacker secretly transfers sensitive information from the organization's network to an external server. Malware may also receive commands through the same hidden communication channel.",
-      "image": "network/data_exfiltration.png",
       "next": "remediation"
     },
 
@@ -154,7 +150,7 @@
       "stage": "data_exfiltration",
       "title": "How to Prevent This",
       "text": "Organizations should continuously monitor DNS traffic, limit unnecessary DNS requests, implement DNS query whitelists, deploy DNSSEC where appropriate, and use DNS monitoring tools to detect tunneling attempts and suspicious activity.",
-      "image": "network/security_monitoring.png",
+      "image": "network/security_monitoring.jpg",
       "next": "attack_replay"
     },
 
@@ -163,7 +159,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how an attacker hid malicious communication inside normal DNS traffic to secretly communicate with a compromised device and extract sensitive information.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +167,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "DNS is essential for network communication, but weak DNS monitoring allows attackers to abuse it for covert communication and data theft. Monitoring DNS activity is an important layer of network defense.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

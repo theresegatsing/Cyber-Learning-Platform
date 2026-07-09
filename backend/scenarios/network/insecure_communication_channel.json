@@ -63,7 +63,7 @@
       "stage": "data_transmission",
       "title": "Scenario",
       "text": "Two systems communicate over a network to exchange sensitive data such as login credentials, financial information, or personal records.",
-      "image": "network/network_communication.png",
+      "image": "network/network_communication.jpg",
       "next": "what_is_mitm"
     },
 
@@ -73,7 +73,7 @@
       "stage": "data_transmission",
       "title": "What is a Man-in-the-Middle Attack?",
       "text": "A Man-in-the-Middle (MitM) attack happens when an attacker secretly intercepts communication between two parties without their knowledge.",
-      "image": "network/mitm_concept.png",
+      "image": "network/mitm_concept.jpg",
       "next": "weakness"
     },
 
@@ -83,7 +83,6 @@
       "stage": "unsecured_channel",
       "title": "Insecure Communication Channels",
       "text": "When communication is not properly encrypted or secured, attackers can intercept and manipulate data in transit. This can happen on public Wi-Fi, misconfigured networks, or systems without proper encryption.",
-      "image": "network/unsecured_channel.png",
       "next": "goal"
     },
 
@@ -93,7 +92,7 @@
       "stage": "interception",
       "title": "Attacker Goal",
       "text": "The attacker wants to secretly intercept communication between two parties to steal sensitive information or manipulate data without being detected.",
-      "image": "network/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +123,7 @@
       "stage": "interception",
       "title": "Try Again",
       "text": "MitM attacks typically rely on intercepting or redirecting network traffic rather than physical access or direct system modification.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +133,6 @@
       "stage": "man_in_the_middle",
       "title": "Man-in-the-Middle Attack in Progress",
       "text": "The attacker successfully positions themselves between two communicating systems and begins intercepting data such as login credentials, session tokens, or financial transactions.",
-      "image": "network/mitm_attack.png",
       "next": "impact"
     },
 
@@ -144,7 +142,6 @@
       "stage": "data_tampering",
       "title": "Impact",
       "text": "MitM attacks can lead to stolen credentials, unauthorized account access, malware injection, and manipulation of sensitive communications such as financial transactions.",
-      "image": "network/data_breach.png",
       "next": "remediation"
     },
 
@@ -154,7 +151,7 @@
       "stage": "data_tampering",
       "title": "How to Prevent This",
       "text": "Organizations should enforce HTTPS/TLS encryption for all communications, use VPNs for remote access, avoid unsecured public Wi-Fi for sensitive operations, and implement DNS security protections such as DNSSEC to prevent spoofing attacks.",
-      "image": "network/security_monitoring.png",
+      "image": "network/security_monitoring.jpg",
       "next": "attack_replay"
     },
 
@@ -163,7 +160,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how an attacker intercepted network traffic and positioned themselves between two communicating parties to steal or manipulate data.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -172,7 +168,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Insecure communication channels allow attackers to intercept and manipulate data in transit. Encryption and secure communication protocols are essential to prevent Man-in-the-Middle attacks.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }
