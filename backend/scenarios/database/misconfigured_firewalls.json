@@ -64,7 +64,6 @@
       "stage": "network_exposure",
       "title": "Scenario",
       "text": "A company stores confidential customer records in an internal database protected by a firewall. The firewall is intended to prevent unauthorized users from reaching sensitive systems.",
-      "image": "network/firewall.jpg",
       "next": "what_is_firewall"
     },
 
@@ -84,7 +83,6 @@
       "stage": "network_exposure",
       "title": "Common Firewall Misconfigurations",
       "text": "Firewalls become ineffective when rules are too permissive, default configurations are left unchanged, unnecessary services remain exposed, or firewall rules are not reviewed regularly. These mistakes may unintentionally expose sensitive systems to external users.",
-      "image": "network/firewall.jpg",
       "next": "goal"
     },
 

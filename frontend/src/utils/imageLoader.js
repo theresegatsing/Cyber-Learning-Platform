@@ -1,29 +1,29 @@
 /**
  * Converts scenario image references into frontend asset URLs.
+ *
+ * Example:
+ *
+ * "network/firewall.jpg"
+ * -> src/assets/illustrations/network/firewall.jpg
+ *
+ * "icons/warning.jpg"
+ * -> src/assets/icons/warning.jpg
  */
 
 export function getImagePath(image) {
-
-    console.log("imageLoader received:", image);
 
     if (!image) {
         return null;
     }
 
 
-    if (!image.startsWith("icons/")) {
+    if (image.startsWith("icons/")) {
 
-        return new URL(
-            `../assets/illustrations/${image}`,
-            import.meta.url
-        ).href;
+        return `/src/assets/${image}`;
 
     }
 
 
-    return new URL(
-        `../assets/${image}`,
-        import.meta.url
-    ).href;
+    return `/src/assets/illustrations/${image}`;
 
 }
