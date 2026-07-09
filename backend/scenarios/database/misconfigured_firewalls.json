@@ -1,190 +1,95 @@
 {
-  "id": "misconfigured_firewalls",
-  "system": "database",
-  "title": "Misconfigured Firewalls",
-  "description": "Learn how improperly configured firewalls expose sensitive services and allow attackers to reach protected databases.",
-  "start": "intro",
-
-  "attack_stages": [
-    {
-      "id": "network_exposure",
-      "title": "Network Exposure",
-      "description": "The organization's firewall exposes services that should remain protected."
-    },
-    {
-      "id": "service_discovery",
-      "title": "Service Discovery",
-      "description": "The attacker identifies publicly accessible systems and services."
-    },
-    {
-      "id": "unauthorized_access",
-      "title": "Unauthorized Access",
-      "description": "The attacker reaches systems that should not have been externally accessible."
-    },
-    {
-      "id": "database_compromise",
-      "title": "Database Compromise",
-      "description": "Sensitive database resources become accessible."
-    },
-    {
-      "id": "business_impact",
-      "title": "Business Impact",
-      "description": "Confidential information is exposed or manipulated."
-    }
-  ],
-
-  "prevention_points": [
-    {
-      "stage": "network_exposure",
-      "title": "Default-Deny Firewall Policy",
-      "description": "Block all traffic by default and explicitly allow only required services."
-    },
-    {
-      "stage": "network_exposure",
-      "title": "Regular Firewall Rule Reviews",
-      "description": "Audit firewall rules to remove unnecessary or outdated permissions."
-    },
-    {
-      "stage": "service_discovery",
-      "title": "Minimize Exposed Services",
-      "description": "Only expose systems that must be accessible from outside the organization."
-    },
-    {
-      "stage": "database_compromise",
-      "title": "Firewall Management Tools",
-      "description": "Solutions such as FireMon and AlgoSec help organizations review and manage firewall configurations."
-    }
-  ],
-
-  "nodes": [
-
-    {
-      "id": "intro",
-      "type": "story",
-      "stage": "network_exposure",
-      "title": "Scenario",
-      "text": "A company stores confidential customer records in an internal database protected by a firewall. The firewall is intended to prevent unauthorized users from reaching sensitive systems.",
-      "image": "database/firewall.png",
-      "next": "what_is_firewall"
-    },
-
-    {
-      "id": "what_is_firewall",
-      "type": "information",
-      "stage": "network_exposure",
-      "title": "What Does a Firewall Do?",
-      "text": "A firewall acts as a security barrier between trusted internal systems and external networks. It decides which network traffic is allowed or blocked based on predefined security rules.",
-      "image": "network/firewall_wall.png",
-      "next": "misconfiguration"
-    },
-
-    {
-      "id": "misconfiguration",
-      "type": "information",
-      "stage": "network_exposure",
-      "title": "Common Firewall Misconfigurations",
-      "text": "Firewalls become ineffective when rules are too permissive, default configurations are left unchanged, unnecessary services remain exposed, or firewall rules are not reviewed regularly. These mistakes may unintentionally expose sensitive systems to external users.",
-      "image": "network/firewall_rules.png",
-      "next": "goal"
-    },
-
-    {
-      "id": "goal",
-      "type": "information",
-      "stage": "service_discovery",
-      "title": "Attacker Goal",
-      "text": "The attacker wants to discover whether any protected systems have been unintentionally exposed through weak firewall configurations.",
-      "image": "network/attacker.png",
-      "next": "choice1"
-    },
-
-    {
-      "id": "choice1",
-      "type": "choice",
-      "stage": "service_discovery",
-      "title": "How does an attacker usually discover a firewall misconfiguration?",
-      "choices": [
-        {
-          "text": "They identify publicly accessible services that should not be exposed.",
-          "next": "discovery"
-        },
-        {
-          "text": "They immediately log into the firewall and edit its rules.",
-          "next": "wrong_answer"
-        },
-        {
-          "text": "They physically disconnect the firewall.",
-          "next": "wrong_answer"
-        }
-      ]
-    },
-
-    {
-      "id": "wrong_answer",
-      "type": "feedback",
-      "stage": "service_discovery",
-      "title": "Try Again",
-      "text": "Attackers typically do not have direct access to firewall configurations. Instead, they identify services that are unintentionally reachable because of incorrect firewall rules.",
-      "image": "icons/warning.png",
-      "next": "choice1"
-    },
-
-    {
-      "id": "discovery",
-      "type": "information",
-      "stage": "service_discovery",
-      "title": "Unexpected Exposure",
-      "text": "The attacker discovers that services intended to remain internal are accessible from outside the organization. This unintended exposure is caused by overly permissive firewall rules.",
-      "image": "network/exposed_service.png",
-      "next": "database_access"
-    },
-
-    {
-      "id": "database_access",
-      "type": "information",
-      "stage": "unauthorized_access",
-      "title": "Unauthorized Access",
-      "text": "Because the firewall allows unnecessary traffic, the attacker reaches systems that should have been protected from external access.",
-      "image": "database/data_access.png",
-      "next": "impact"
-    },
-
-    {
-      "id": "impact",
-      "type": "information",
-      "stage": "database_compromise",
-      "title": "Database Compromise",
-      "text": "Improper firewall configurations can allow confidential information to be viewed, modified, or deleted, threatening the integrity, confidentiality, and availability of organizational data.",
-      "image": "database/data_leak.png",
-      "next": "remediation"
-    },
-
-    {
-      "id": "remediation",
-      "type": "information",
-      "stage": "business_impact",
-      "title": "How to Prevent This",
-      "text": "Organizations should adopt a default-deny firewall policy, regularly review firewall rules, remove unnecessary exposed services, keep configurations updated, and use firewall management solutions such as FireMon and AlgoSec to simplify configuration management and reduce human error.",
-      "image": "network/firewall_management.png",
-      "next": "attack_replay"
-    },
-
-    {
-      "id": "attack_replay",
-      "type": "attack_replay",
-      "title": "Attack Replay",
-      "text": "Review how the attacker identified an exposed service, reached protected systems, and compromised sensitive data because of a firewall misconfiguration.",
-      "image": "icons/replay.png",
-      "next": "summary"
-    },
-
-    {
-      "id": "summary",
-      "type": "summary",
-      "title": "Scenario Complete",
-      "text": "Firewalls are only effective when correctly configured. Even a single overly permissive rule can expose internal services, allowing attackers to reach systems that should never have been accessible.",
-      "image": "icons/check.png"
-    }
-
-  ]
+  "id": "intro",
+  "type": "story",
+  "stage": "network_exposure",
+  "title": "Scenario",
+  "text": "A company stores confidential customer records in an internal database protected by a firewall. The firewall is intended to prevent unauthorized users from reaching sensitive systems.",
+  "image": "network/firewall.jpg",
+  "next": "what_is_firewall"
+},
+{
+  "id": "what_is_firewall",
+  "type": "information",
+  "stage": "network_exposure",
+  "title": "What Does a Firewall Do?",
+  "text": "A firewall acts as a security barrier between trusted internal systems and external networks. It decides which network traffic is allowed or blocked based on predefined security rules.",
+  "image": "network/firewall.jpg",
+  "next": "misconfiguration"
+},
+{
+  "id": "misconfiguration",
+  "type": "information",
+  "stage": "network_exposure",
+  "title": "Common Firewall Misconfigurations",
+  "text": "Firewalls become ineffective when rules are too permissive, default configurations are left unchanged, unnecessary services remain exposed, or firewall rules are not reviewed regularly. These mistakes may unintentionally expose sensitive systems to external users.",
+  "image": "network/firewall.jpg",
+  "next": "goal"
+},
+{
+  "id": "goal",
+  "type": "information",
+  "stage": "service_discovery",
+  "title": "Attacker Goal",
+  "text": "The attacker wants to discover whether any protected systems have been unintentionally exposed through weak firewall configurations.",
+  "image": "network/attacker.jpg",
+  "next": "choice1"
+},
+{
+  "id": "wrong_answer",
+  "type": "feedback",
+  "stage": "service_discovery",
+  "title": "Try Again",
+  "text": "Attackers typically do not have direct access to firewall configurations. Instead, they identify services that are unintentionally reachable because of incorrect firewall rules.",
+  "image": "icons/warning.jpg",
+  "next": "choice1"
+},
+{
+  "id": "discovery",
+  "type": "information",
+  "stage": "service_discovery",
+  "title": "Unexpected Exposure",
+  "text": "The attacker discovers that services intended to remain internal are accessible from outside the organization. This unintended exposure is caused by overly permissive firewall rules.",
+  "image": "network/network_topology.jpg",
+  "next": "database_access"
+},
+{
+  "id": "database_access",
+  "type": "information",
+  "stage": "unauthorized_access",
+  "title": "Unauthorized Access",
+  "text": "Because the firewall allows unnecessary traffic, the attacker reaches systems that should have been protected from external access.",
+  "image": "database/database_access.jpg",
+  "next": "impact"
+},
+{
+  "id": "impact",
+  "type": "information",
+  "stage": "database_compromise",
+  "title": "Database Compromise",
+  "text": "Improper firewall configurations can allow confidential information to be viewed, modified, or deleted, threatening the integrity, confidentiality, and availability of organizational data.",
+  "image": "database/data_leak.jpg",
+  "next": "remediation"
+},
+{
+  "id": "remediation",
+  "type": "information",
+  "stage": "business_impact",
+  "title": "How to Prevent This",
+  "text": "Organizations should adopt a default-deny firewall policy, regularly review firewall rules, remove unnecessary exposed services, keep configurations updated, and use firewall management solutions such as FireMon and AlgoSec to simplify configuration management and reduce human error.",
+  "image": "network/firewall.jpg",
+  "next": "attack_replay"
+},
+{
+  "id": "attack_replay",
+  "type": "attack_replay",
+  "title": "Attack Replay",
+  "text": "Review how the attacker identified an exposed service, reached protected systems, and compromised sensitive data because of a firewall misconfiguration.",
+  "next": "summary"
+},
+{
+  "id": "summary",
+  "type": "summary",
+  "title": "Scenario Complete",
+  "text": "Firewalls are only effective when correctly configured. Even a single overly permissive rule can expose internal services, allowing attackers to reach systems that should never have been accessible.",
+  "image": "icons/shield.jpg"
 }
