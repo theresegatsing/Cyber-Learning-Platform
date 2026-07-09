@@ -64,6 +64,7 @@
       "stage": "network_exposure",
       "title": "Scenario",
       "text": "A company stores confidential customer records in an internal database protected by a firewall. The firewall is intended to prevent unauthorized users from reaching sensitive systems.",
+      "image": "network/firewall.jpg",
       "next": "what_is_firewall"
     },
 
@@ -73,7 +74,6 @@
       "stage": "network_exposure",
       "title": "What Does a Firewall Do?",
       "text": "A firewall acts as a security barrier between trusted internal systems and external networks. It decides which network traffic is allowed or blocked based on predefined security rules.",
-      "image": "network/firewall.jpg",
       "next": "misconfiguration"
     },
 
@@ -163,7 +163,6 @@
       "stage": "business_impact",
       "title": "How to Prevent This",
       "text": "Organizations should adopt a default-deny firewall policy, regularly review firewall rules, remove unnecessary exposed services, keep configurations updated, and use firewall management solutions such as FireMon and AlgoSec to simplify configuration management and reduce human error.",
-      "image": "network/firewall.jpg",
       "next": "attack_replay"
     },
 
