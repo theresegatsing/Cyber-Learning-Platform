@@ -63,7 +63,7 @@
       "stage": "initial_access",
       "title": "Scenario",
       "text": "A company stores sensitive employee information in an internal database. Every employee has a standard user account to perform daily tasks. An attacker has successfully compromised one employee's account.",
-      "image": "database/database_server.png",
+      "image": "database/database_server.jpg",
       "next": "what_is_privilege_escalation"
     },
 
@@ -73,7 +73,7 @@
       "stage": "initial_access",
       "title": "What is Privilege Escalation?",
       "text": "Privilege escalation occurs when an attacker gains permissions or access that were never intended by the system administrator. The objective is to perform actions reserved for more privileged users, such as executing administrative commands, accessing protected information, modifying system settings, or controlling critical resources.",
-      "image": "database/privilege_overview.png",
+      "image": "database/privilege_overview.jpg",
       "next": "weaknesses"
     },
 
@@ -83,7 +83,7 @@
       "stage": "identify_weakness",
       "title": "Common Weaknesses",
       "text": "Attackers search for operating system bugs, vulnerable software, buffer overflows, injection flaws, overly permissive file permissions, exposed administrative interfaces, weak access controls, or employees who can be manipulated through social engineering. Any of these weaknesses can provide an opportunity to increase their privileges.",
-      "image": "database/software_bug.png",
+      "image": "database/software_bug.jpg",
       "next": "goal"
     },
 
@@ -93,7 +93,7 @@
       "stage": "identify_weakness",
       "title": "Attacker Goal",
       "text": "The attacker already has access to one employee account. Their next objective is to obtain additional privileges so they can access confidential information or take control of the system.",
-      "image": "database/attacker.png",
+      "image": "icons/attacker.jpg",
       "next": "choice_type"
     },
 
@@ -120,7 +120,7 @@
       "stage": "privilege_escalation",
       "title": "Horizontal Privilege Escalation",
       "text": "Horizontal privilege escalation occurs when an attacker gains access to another user's account while remaining at the same privilege level. Instead of becoming an administrator, they impersonate another employee with similar permissions. Attackers commonly achieve this through session hijacking, stolen credentials, phishing, malware, or credential reuse.",
-      "image": "database/horizontal.png",
+      "image": "database/horizontal.jpg",
       "next": "vertical"
     },
 
@@ -130,7 +130,7 @@
       "stage": "privilege_escalation",
       "title": "Vertical Privilege Escalation",
       "text": "Vertical privilege escalation occurs when an attacker increases their permission level—for example, moving from a standard employee account to a system administrator. This is commonly achieved by exploiting operating system vulnerabilities, software bugs, insecure configurations, exposed administrative services, or applications running with excessive permissions.",
-      "image": "database/vertical.png",
+      "image": "database/vertical.jpg",
       "next": "techniques"
     },
 
@@ -140,7 +140,6 @@
       "stage": "privilege_escalation",
       "title": "How Attackers Achieve Privilege Escalation",
       "text": "Attackers often combine technical vulnerabilities with human error. They may exploit vulnerable software, abuse weak configurations, or manipulate employees into revealing credentials, downloading malware disguised as legitimate files, or granting access under false pretenses. Once inside the system, they search for opportunities to increase or expand their privileges.",
-      "image": "database/attacker_methods.png",
       "next": "admin_access"
     },
 
@@ -150,7 +149,7 @@
       "stage": "system_control",
       "title": "Administrator Access",
       "text": "After successfully escalating privileges, the attacker can execute administrative commands, create new privileged accounts, disable security controls, modify configurations, access protected files, and control sensitive database resources.",
-      "image": "database/admin_access.png",
+      "image": "icons/admin.jpg",
       "next": "impact"
     },
 
@@ -160,7 +159,7 @@
       "stage": "business_impact",
       "title": "Business Impact",
       "text": "Privilege escalation can result in unauthorized access to confidential information, modification or deletion of critical data, installation of persistent malware, disruption of business operations, and long-term compromise of organizational systems.",
-      "image": "database/data_leak.png",
+      "image": "database/data_leak.jpg",
       "next": "remediation"
     },
 
@@ -170,7 +169,7 @@
       "stage": "business_impact",
       "title": "How to Prevent This",
       "text": "Organizations should regularly patch operating systems and applications, audit user roles and permissions, follow the principle of least privilege, secure administrative interfaces, monitor privileged activity, and educate employees to recognize phishing and other social engineering attacks.",
-      "image": "database/security_update.png",
+      "image": "database/security_update.jpg",
       "next": "attack_replay"
     },
 
@@ -179,7 +178,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review the path the attacker followed from an ordinary employee account to privileged access. Notice each point where security controls could have interrupted the attack.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -188,7 +186,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Privilege escalation rarely happens because of a single weakness. It is usually the result of vulnerable software, insecure configurations, weak access controls, and human error working together. Applying layered security controls significantly reduces the likelihood of attackers successfully escalating their privileges.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

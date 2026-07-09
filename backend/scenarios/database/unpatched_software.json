@@ -63,7 +63,7 @@
       "stage": "outdated_system",
       "title": "Scenario",
       "text": "A company operates a database system that relies on several software components, some of which have not been updated in a long time.",
-      "image": "database/database_server.png",
+      "image": "database/database_server.jpg",
       "next": "what_is_unpatched"
     },
 
@@ -73,7 +73,7 @@
       "stage": "outdated_system",
       "title": "What is Unpatched Software?",
       "text": "Unpatched software refers to systems or applications that have known security vulnerabilities that have not been fixed through updates or patches. These vulnerabilities are publicly known and often documented.",
-      "image": "database/software_bug.png",
+      "image": "database/software_bug.jpg",
       "next": "weakness"
     },
 
@@ -83,7 +83,7 @@
       "stage": "vulnerability_discovery",
       "title": "Security Weakness",
       "text": "Outdated systems and end-of-life software no longer receive security updates, making them especially vulnerable. Attackers actively search for these systems because their weaknesses are already known.",
-      "image": "database/outdated_system.png",
+      "image": "database/outdated_system.jpg",
       "next": "goal"
     },
 
@@ -93,7 +93,7 @@
       "stage": "vulnerability_discovery",
       "title": "Attacker Goal",
       "text": "The attacker wants to exploit known vulnerabilities in outdated software to gain unauthorized access to the database system.",
-      "image": "database/attacker.png",
+      "image": "database/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +124,7 @@
       "stage": "vulnerability_discovery",
       "title": "Try Again",
       "text": "Unpatched systems remain vulnerable because known flaws are not fixed. Attackers actively search for these weaknesses.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +134,6 @@
       "stage": "exploit_execution",
       "title": "Exploit Execution",
       "text": "The attacker successfully exploits a known vulnerability in the outdated software, allowing them to execute malicious code on the system.",
-      "image": "database/exploit.png",
       "next": "backdoor"
     },
 
@@ -144,7 +143,6 @@
       "stage": "backdoor_creation",
       "title": "Backdoor Access",
       "text": "The attacker creates a hidden access method (backdoor) to maintain persistent access even after system restarts or partial fixes.",
-      "image": "database/backdoor.png",
       "next": "impact"
     },
 
@@ -154,7 +152,7 @@
       "stage": "data_compromise",
       "title": "Data Compromise",
       "text": "Sensitive data stored in the database can now be accessed, modified, or stolen due to the exploited vulnerability.",
-      "image": "database/data_leak.png",
+      "image": "database/data_leak.jpg",
       "next": "remediation"
     },
 
@@ -164,7 +162,7 @@
       "stage": "data_compromise",
       "title": "How to Prevent This",
       "text": "Organizations should regularly update and patch software, monitor system versions, replace end-of-life systems, and maintain a strict upgrade policy aligned with security and compliance requirements.",
-      "image": "database/security_update.png",
+      "image": "database/security_update.jpg",
       "next": "attack_replay"
     },
 
@@ -173,7 +171,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how an outdated system allowed a known vulnerability to be exploited, leading to full compromise of the database environment.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -182,7 +179,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Unpatched software is one of the most common causes of security breaches. Regular updates and system modernization are critical to prevent attackers from exploiting known vulnerabilities.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

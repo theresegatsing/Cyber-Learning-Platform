@@ -63,7 +63,7 @@
       "stage": "user_input",
       "title": "Scenario",
       "text": "A company database system allows employees to search, retrieve, and update records using input fields that are directly connected to backend queries.",
-      "image": "database/database_server.png",
+      "image": "database/database_server.jpg",
       "next": "what_is_input"
     },
 
@@ -73,7 +73,7 @@
       "stage": "user_input",
       "title": "How the System Works",
       "text": "The database system takes user input and uses it to build queries that retrieve or modify stored information. This input directly influences database operations.",
-      "image": "database/query_flow.png",
+      "image": "database/query_flow.jpg",
       "next": "weakness"
     },
 
@@ -83,7 +83,6 @@
       "stage": "weak_validation",
       "title": "Weak Input Validation",
       "text": "When user input is not properly validated or sanitized, attackers can insert malicious content into database queries. This allows them to manipulate how the database interprets requests.",
-      "image": "database/code_input.png",
       "next": "goal"
     },
 
@@ -93,7 +92,7 @@
       "stage": "user_input",
       "title": "Attacker Goal",
       "text": "The attacker wants to manipulate database queries to access, modify, or delete sensitive records without authorization.",
-      "image": "database/attacker.png",
+      "image": "database/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +123,7 @@
       "stage": "weak_validation",
       "title": "Try Again",
       "text": "Weak input validation allows attackers to manipulate how queries are executed. Think about how input affects database behavior.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +133,7 @@
       "stage": "query_manipulation",
       "title": "Query Manipulation",
       "text": "Because input is not properly sanitized, the attacker is able to manipulate database queries and change how the system retrieves or modifies data.",
-      "image": "database/query_attack.png",
+      "image": "database/query_attack.jpg",
       "next": "database_access"
     },
 
@@ -144,7 +143,6 @@
       "stage": "database_exploitation",
       "title": "Database Exploitation",
       "text": "The attacker can now access or modify sensitive records stored in the database, bypassing normal access controls.",
-      "image": "database/data_access.png",
       "next": "impact"
     },
 
@@ -154,7 +152,7 @@
       "stage": "business_impact",
       "title": "Business Impact",
       "text": "Improper input validation can lead to unauthorized data access, modification, deletion of records, and loss of database integrity.",
-      "image": "database/data_leak.png",
+      "image": "database/data_leak.jpg",
       "next": "remediation"
     },
 
@@ -164,7 +162,7 @@
       "stage": "business_impact",
       "title": "How to Prevent This",
       "text": "Organizations should validate all input strictly, use parameterized queries, enforce least privilege database access, and deploy monitoring tools to detect abnormal query behavior.",
-      "image": "database/security_update.png",
+      "image": "database/security_update.jpg",
       "next": "attack_replay"
     },
 
@@ -173,7 +171,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how unsafe input handling allowed an attacker to manipulate database queries and access sensitive information.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -182,7 +179,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Weak input validation in database-driven systems can allow attackers to manipulate queries and compromise sensitive data. Proper validation and query separation are essential defenses.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }

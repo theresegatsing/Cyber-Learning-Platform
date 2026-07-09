@@ -63,7 +63,7 @@
       "stage": "phishing_delivery",
       "title": "Scenario",
       "text": "A company relies on email communication for internal operations. Employees frequently receive external emails containing attachments and links.",
-      "image": "database/email_system.png",
+      "image": "database/email_system.jpg",
       "next": "what_is_phishing"
     },
 
@@ -73,7 +73,6 @@
       "stage": "phishing_delivery",
       "title": "What is Phishing?",
       "text": "Phishing is a type of cyber attack where attackers send fraudulent emails or messages designed to trick users into revealing sensitive information or executing malicious actions.",
-      "image": "database/phishing_email.png",
       "next": "weakness"
     },
 
@@ -83,7 +82,6 @@
       "stage": "phishing_delivery",
       "title": "Weak Email Security",
       "text": "Weak email security occurs when organizations fail to properly filter malicious messages or adequately train users to recognize phishing attempts.",
-      "image": "database/email_warning.png",
       "next": "goal"
     },
 
@@ -93,7 +91,7 @@
       "stage": "user_interaction",
       "title": "Attacker Goal",
       "text": "The attacker wants to trick an employee into opening a malicious email that will allow them to compromise the system.",
-      "image": "database/attacker.png",
+      "image": "database/attacker.jpg",
       "next": "choice1"
     },
 
@@ -124,7 +122,7 @@
       "stage": "user_interaction",
       "title": "Try Again",
       "text": "Phishing attacks often succeed because users interact with malicious emails, not because systems automatically block everything.",
-      "image": "icons/warning.png",
+      "image": "icons/warning.jpg",
       "next": "choice1"
     },
 
@@ -134,7 +132,6 @@
       "stage": "malware_execution",
       "title": "Malware Execution",
       "text": "The user unknowingly executes malicious code through a downloaded file or link, allowing the attacker to gain a foothold in the system.",
-      "image": "database/malware.png",
       "next": "ransomware"
     },
 
@@ -144,7 +141,7 @@
       "stage": "ransomware_attack",
       "title": "Ransomware Attack",
       "text": "The malware spreads and encrypts critical database files, making them inaccessible. The attacker demands payment in exchange for recovery.",
-      "image": "database/ransomware.png",
+      "image": "database/ransomware.jpg",
       "next": "impact"
     },
 
@@ -154,7 +151,7 @@
       "stage": "data_compromise",
       "title": "Business Impact",
       "text": "Ransomware can disrupt operations, cause financial loss, and lead to permanent data loss if backups are not available.",
-      "image": "database/data_leak.png",
+      "image": "database/data_leak.jpg",
       "next": "remediation"
     },
 
@@ -164,7 +161,7 @@
       "stage": "data_compromise",
       "title": "How to Prevent This",
       "text": "Organizations should invest in employee awareness training, deploy email filtering systems, use anti-malware tools, maintain regular backups, and isolate critical systems to limit infection spread.",
-      "image": "database/security_update.png",
+      "image": "database/security_update.jpg",
       "next": "attack_replay"
     },
 
@@ -173,7 +170,6 @@
       "type": "attack_replay",
       "title": "Attack Replay",
       "text": "Review how a simple phishing email led to malware execution, ransomware infection, and eventual compromise of sensitive database systems.",
-      "image": "icons/replay.png",
       "next": "summary"
     },
 
@@ -182,7 +178,7 @@
       "type": "summary",
       "title": "Scenario Complete",
       "text": "Email-based attacks remain one of the most effective entry points for cybercriminals. User awareness and strong email security controls are essential to prevent ransomware and malware infections.",
-      "image": "icons/check.png"
+      "image": "icons/shield.jpg"
     }
   ]
 }
